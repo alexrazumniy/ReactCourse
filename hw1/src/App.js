@@ -23,7 +23,7 @@ const pages = {
   callback: <CallBack />,
   contacts: <Contacts />,
 }
-
+ 
 const links = [
   { id: 1, name: "Home", href: "#" },
   { id: 2, name: "News", href: "#" },
