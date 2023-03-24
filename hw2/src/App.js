@@ -1,9 +1,11 @@
 import React from "react";
 import "./App.css";
 
-//====Задача #1 - Работа с функциональными компонентами====//
+//===========================================================//
+//==== Задача #1 - Работа с функциональными компонентами ====//
+//===========================================================//
 
-//===== Task 1.1 =====
+//===== Task 1.1 =====//
 
 // export default class User extends React.Component {
 //   state = {
@@ -21,8 +23,9 @@ import "./App.css";
 //   }
 // }
 
-//===== Task 1.2 =====
-// ===> a)
+//===== Task 1.2 =====//
+
+// ===> a) <===//
 
 // const UserCard = (props) => {
 //   return (
@@ -35,7 +38,7 @@ import "./App.css";
 //   );
 // };
 
-// ===> b)
+// ===> b) <===//
 
 // const UserCard = ({name, surname, age}) => {
 //   return (
@@ -48,7 +51,7 @@ import "./App.css";
 //   );
 // };
 
-// ===> c)
+// ===> c) <===//
 
 // export default class User extends React.Component {
 //   state = {
@@ -77,110 +80,186 @@ import "./App.css";
 //   );
 // };
 
-//===== Task 1.3 =====
-// ===> a)
+//==== Task 1.3 =====//
 
-export default class User extends React.Component {
-  state = {
-    name: "Alex",
-    surname: "Ivanov",
-    age: 15,
-  };
+// ===> a) <===//
 
-  render() {
-    return (
-      <div>
-        <UserCardText {...this.state} />
-      </div>
-    );
-  }
-}
+// export default class User extends React.Component {
+//   state = {
+//     name: "Alex",
+//     surname: "Ivanov",
+//     age: 15,
+//   };
 
-// ===> b)
+//   render() {
+//     return (
+//       <div>
+//         <UserCardText {...this.state} />
+//       </div>
+//     );
+//   }
+// }
+
+// ===> b) <===//
 
 // const UserCardText = (props) => {
 //   return <div>My info: {Object.values(props).join(" - ")}</div>;
 // };
 
-// ===> c)
+// ===> c) <===//
 
-const UserCardText = (props) => {
-  let isAgeIn;
+// const UserCardText = (props) => {
+//   let isAgeIn;
 
-  if (props.age < 18) {
-    isAgeIn = "не"
-  } else isAgeIn = ""
+//   if (props.age < 18) {
+//     isAgeIn = "не"
+//   } else isAgeIn = ""
 
-  return <div>Привет, {props.name}, тебе {props.age} лет,
-  я <span>{isAgeIn}</span> могу налить тебе выпить чего-нибудь</div>
-};
+//   return <div>Привет, {props.name}, тебе {props.age} лет,
+//   я <span>{isAgeIn}</span> могу налить тебе выпить чего-нибудь</div>
+// };
 
+//======================================//
+//==== Задача #2 - Работа с формами ====//
+//======================================//
 
-
-
-
-// class Counter extends React.Component
-// constructor(props) {
-//     super(props);
-//     this.state = {counter: 0};
-//     this.handleClick = this.handleClick.bind(this);
-//   }
-
-//   handleClick(e) {
-
-//   }
-
-//   render() {
-//     return <div>null</div>
-//   }
-
-// export default Counter;
-
-// export default class Form extends Component {
+// export default class Form extends React.Component {
 //   state = {
-//     firstName: "",
-//     surName: "",
+//     name: "",
+//     surname: "",
+//     error: "",
 //   };
 
 //   onSubmit = (event) => {
 //     event.preventDefault();
 
-//     console.log(this.state.firstName, this.state.surName);
+//     if (this.state.name.length < 3 || this.state.surname.length < 3) {
+//       this.setState({ error: "С твоими данными что то не так ;(" });
+//       this.setState({
+//         name: "",
+//         surname: "",
+//       });
+//     } else
+//       alert(
+//         `Добро пожаловать - ${this.state.name
+//           .slice(0, 1)
+//           .toUpperCase()}${this.state.name
+//           .slice(1)
+//           .toLowerCase()} ${this.state.surname
+//           .slice(0, 1)
+//           .toUpperCase()}${this.state.surname.slice(1).toLowerCase()}`
+//       );
+//     // Делает первые буквы заглавными, остальные строчными
+//     this.setState({
+//       name: "",
+//       surname: "",
+//     });
 //   };
-
-// changeFirstNameValue = (event) => {
-//   this.setState({ firstName: event.target.value });
-// };
-
-// changeSurNameValue = (event) => {
-//   this.setState({ surName: event.target.value });
-// };
 
 //   changeValue = (event) => {
 //     this.setState({
 //       [event.target.name]: event.target.value,
+//       error: "",
 //     });
 //   };
 
 //   render() {
 //     return (
 //       <div>
-//         <form onSubmit={this.onSubmit}>
+//         <form className="form" onSubmit={this.onSubmit}>
 //           <input
+//             className="input"
 //             placeholder="name"
-//             name="firstName"
-//             value={this.state.firstName}
+//             name="name"
+//             value={this.state.name}
 //             onChange={this.changeValue}
 //           />
 //           <input
+//             className="input"
 //             placeholder="surname"
-//             name="surName"
-//             value={this.state.surName}
+//             name="surname"
+//             value={this.state.surname}
 //             onChange={this.changeValue}
 //           />
-//           <button type="submit">Submit</button>
+//           <button className="button" type="submit">
+//             Submit
+//           </button>
 //         </form>
+//         <p className="error_text">{this.state.error}</p>
 //       </div>
 //     );
 //   }
 // }
+
+
+//=================================================//
+//==== Задание #3 - работа с Lifecycle methods ====//
+//=================================================//
+
+export default class Form extends React.Component {
+  state = {
+    name: "",
+    surname: "",
+    error: "",
+  };
+
+  onSubmit = (event) => {
+    event.preventDefault();
+
+    if (this.state.name.length < 3 || this.state.surname.length < 3) {
+      this.setState({ error: "С твоими данными что то не так ;(" });
+      this.setState({
+        name: "",
+        surname: "",
+      });
+    } else
+      alert(
+        `Добро пожаловать - ${this.state.name
+          .slice(0, 1)
+          .toUpperCase()}${this.state.name
+          .slice(1)
+          .toLowerCase()} ${this.state.surname
+          .slice(0, 1)
+          .toUpperCase()}${this.state.surname.slice(1).toLowerCase()}`
+      );
+    // Делает первые буквы заглавными, остальные строчными
+    this.setState({
+      name: "",
+      surname: "",
+    });
+  };
+
+  changeValue = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+      error: "",
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <form className="form" onSubmit={this.onSubmit}>
+          <input
+            className="input"
+            placeholder="name"
+            name="name"
+            value={this.state.name}
+            onChange={this.changeValue}
+          />
+          <input
+            className="input"
+            placeholder="surname"
+            name="surname"
+            value={this.state.surname}
+            onChange={this.changeValue}
+          />
+          <button className="button" type="submit">
+            Submit
+          </button>
+        </form>
+        <p className="error_text">{this.state.error}</p>
+      </div>
+    );
+  }
+}
