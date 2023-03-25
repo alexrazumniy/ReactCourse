@@ -191,75 +191,34 @@ import "./App.css";
 //   }
 // }
 
-
 //=================================================//
 //==== Задание #3 - работа с Lifecycle methods ====//
 //=================================================//
 
-export default class Form extends React.Component {
+export default class Lifecycle extends React.Component {
   state = {
-    name: "",
-    surname: "",
-    error: "",
+    pageTitle: "Hello",
   };
 
-  onSubmit = (event) => {
-    event.preventDefault();
+  componentDidMount() {
+    this.setState({ pageTitle: "Start Page" });
+  }
 
-    if (this.state.name.length < 3 || this.state.surname.length < 3) {
-      this.setState({ error: "С твоими данными что то не так ;(" });
-      this.setState({
-        name: "",
-        surname: "",
-      });
-    } else
-      alert(
-        `Добро пожаловать - ${this.state.name
-          .slice(0, 1)
-          .toUpperCase()}${this.state.name
-          .slice(1)
-          .toLowerCase()} ${this.state.surname
-          .slice(0, 1)
-          .toUpperCase()}${this.state.surname.slice(1).toLowerCase()}`
-      );
-    // Делает первые буквы заглавными, остальные строчными
-    this.setState({
-      name: "",
-      surname: "",
-    });
-  };
-
-  changeValue = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-      error: "",
-    });
-  };
+  componentDidUpdate(updatedTitle, ...rest) {
+    updatedTitle = this.state.pageTitle;
+  }
 
   render() {
     return (
       <div>
-        <form className="form" onSubmit={this.onSubmit}>
-          <input
-            className="input"
-            placeholder="name"
-            name="name"
-            value={this.state.name}
-            onChange={this.changeValue}
-          />
-          <input
-            className="input"
-            placeholder="surname"
-            name="surname"
-            value={this.state.surname}
-            onChange={this.changeValue}
-          />
-          <button className="button" type="submit">
-            Submit
-          </button>
-        </form>
-        <p className="error_text">{this.state.error}</p>
+        <p className="title-for-task-3">{this.state.pageTitle}</p>
+        <button className="button button-for-task-3"
+          onClick={() => this.setState({ pageTitle: "Random Page" })}
+        >
+          Button for update
+        </button>
       </div>
     );
   }
 }
+
