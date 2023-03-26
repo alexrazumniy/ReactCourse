@@ -62,8 +62,8 @@ export class Form extends React.Component {
           <button className="button" type="submit">
             Submit
           </button>
+          <p className="error_text">{this.state.error}</p>
         </form>
-        <p className="error_text">{this.state.error}</p>
       </>
     );
   }
