@@ -43,7 +43,7 @@ export class Form extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <form className="form" onSubmit={this.onSubmit}>
           <input
             className="input"
@@ -64,7 +64,7 @@ export class Form extends React.Component {
           </button>
         </form>
         <p className="error_text">{this.state.error}</p>
-      </div>
+      </>
     );
   }
 }
