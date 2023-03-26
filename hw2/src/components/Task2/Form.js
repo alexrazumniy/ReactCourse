@@ -44,6 +44,7 @@ export class Form extends React.Component {
   render() {
     return (
       <>
+        <p>=== ЗАДАЧА 2 ===</p>
         <form className="form" onSubmit={this.onSubmit}>
           <input
             className="input"

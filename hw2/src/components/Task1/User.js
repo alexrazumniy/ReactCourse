@@ -13,7 +13,12 @@ export class User extends React.Component {
   render() {
     return (
       <>
-        <UserCard name={this.state.name} surname={this.state.surname} age={this.state.age}/>
+        <p>=== ЗАДАЧА 1 ===</p>
+        <UserCard
+          name={this.state.name}
+          surname={this.state.surname}
+          age={this.state.age}
+        />
       </>
     );
   }
@@ -59,6 +64,7 @@ const UserCard = (props) => {
 //   render() {
 //     return (
 //       <>
+//         <p>=== ЗАДАЧА 1 ===</p>;
 //         <UserCard {...this.state} />
 //       </>
 //     );
@@ -90,6 +96,7 @@ const UserCard = (props) => {
 //   render() {
 //     return (
 //       <>
+//         <p>=== ЗАДАЧА 1 ===</p>;
 //         <UserCardText {...this.state} />
 //       </>
 //     );
