@@ -18,7 +18,7 @@ export class Lifecycle extends React.Component {
   render() {
     return (
       <>
-        <p>=== ЗАДАЧА 3 ===</p>
+        <h3>=== ЗАДАЧА 3 ===</h3>
         <p className="title-for-task-3">{this.state.pageTitle}</p>
         <button
           className="button button-for-task-3" 
