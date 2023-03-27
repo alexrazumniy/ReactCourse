@@ -2,7 +2,6 @@ import React from "react";
 import "../styles.css";
 
 //===== Task 1.1 =====//
-
 export class User1 extends React.Component {
   state = {
     name: "Alex",
