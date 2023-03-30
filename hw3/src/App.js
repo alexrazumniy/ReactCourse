@@ -1,5 +1,5 @@
 import React from "react";
-import { Albums } from "./components/Albums";
+import { Albums } from "./components/Task1/Albums";
 
 export default class App extends React.Component {
   render() {
