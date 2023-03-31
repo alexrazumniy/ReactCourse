@@ -1,5 +1,4 @@
 import React from "react";
-import { Albums } from "./Albums";
 
 export const DataContext = React.createContext();
 
@@ -26,16 +25,9 @@ export class DataProvider extends React.Component {
       return <div>Ошибка: {error.message}</div>;
     } else {
       return (
-        <div>
-          <DataContext.Provider value={this.state}>
-            {/* {this.state.albums.map((album) => (
-              <div key={album.id}>
-                {album.userId} - {album.id} - {album.title}
-              </div>
-            ))} */}
-          </DataContext.Provider>
-          ;
-        </div>
+        <DataContext.Provider value={this.state}>
+          {this.props.children}
+        </DataContext.Provider>
       );
     }
   }
