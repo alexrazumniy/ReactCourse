@@ -22,8 +22,6 @@ export class DataProvider extends React.Component {
       )
       .catch((error) => {
         this.setState({ error });
-        console.log({ error });
-        console.log(this.albums);
       });
   }
 
@@ -38,7 +36,6 @@ export class DataProvider extends React.Component {
   };
 
   render() {
-    console.log(this.context);
     const { error } = this.state;
     if (error) {
       return <div>Ошибка: {error.message}</div>;
