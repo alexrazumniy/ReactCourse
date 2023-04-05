@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import "../../App.css";
-import Video from "./video/butterfly.mp4";
+import Video from "../video/butterfly.mp4";
 
-export function Videoplayer() {
+export default function Videoplayer() {
   const videoRef = useRef();
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -43,7 +43,7 @@ export function Videoplayer() {
 
   return (
     <div className="videoplayer">
-      <h3>Videoplayer</h3>
+      <h3>Task 3.2 Videoplayer</h3>
       <div>
         <video className="video" ref={videoRef} controls>
           <source src={Video} type="video/mp4" />

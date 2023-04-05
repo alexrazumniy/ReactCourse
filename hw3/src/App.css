@@ -1,14 +1,22 @@
-.form {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  margin: 30px;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 .input {
-  font-size: 15px;
-  padding: 5px 9px;
+  font-size: 18px;
+  width: 250px;
+  padding: 5px;
+  margin-right: 30px;
   margin-bottom: 30px;
   border: 1px solid;
   border-radius: 5px;

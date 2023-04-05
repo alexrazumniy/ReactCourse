@@ -1,20 +1,18 @@
 import React from "react";
-import { Albums } from "./components/Task1/Albums";
-import { Form } from "./components/Task1/GetAlbumsByInput";
-import { GetAlbumsUsingHooks } from "./components/Task2/GetAlbumsUsingHooks";
-import { Square } from "./components/Task3/Square";
-import { Videoplayer } from "./components/Task3/Videoplayer";
+import AlbumsClass from "./components/Task1/AlbumsClass";
+import AlbumsFunc from "./components/Task2/AlbumsFunc";
+import SquareComponent from "./components/Task3/SquareComponent";
+import Videoplayer from "./components/Task3/Videoplayer";
 
 export default class App extends React.Component {
   render() {
     return (
-      <>
-        {/* <Albums /> */}
-        {/* <Form /> */}
-        {/* <GetAlbumsUsingHooks /> */}
-        {/* <Square /> */}
-        {/* <Videoplayer /> */}
-      </>
+      <div>
+        <AlbumsClass />
+        <AlbumsFunc />
+        <SquareComponent />
+        <Videoplayer />
+      </div>
     );
   }
 }

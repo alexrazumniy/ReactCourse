@@ -4,47 +4,48 @@ export const DataContext = React.createContext();
 
 export class DataProvider extends React.Component {
   state = {
-    error: null,
     albums: [],
-    albumsToShow: [],
-    albumsNum: 0,
+    newAlbumsAmount: [],
+    n: 0,
+    error: "",
   };
 
   componentDidMount() {
     fetch("https://jsonplaceholder.typicode.com/albums")
-      .then((res) => res.json())
+      .then((response) => response.json())
       .then((albums) =>
         this.setState({
           albums: albums,
-          albumsToShow: albums.slice(),
-          albumsNum: albums.length,
+          newAlbumsAmount: albums.slice(),
+          n: albums.length,
         })
       )
       .catch((error) => {
-        this.setState({ error });
+        if (!error.response.ok) {
+          this.setState({ error });
+        }
       });
   }
 
   handleChange = (inputNum) => {
     const { albums } = this.state;
-    const albumsToShow = albums.slice(0, inputNum);
+    const newAlbumsAmount = albums.slice(0, inputNum);
 
     this.setState({
-      albumsToShow,
-      albumsNum: inputNum
+      newAlbumsAmount,
+      n: inputNum,
     });
   };
 
   render() {
-    const { error } = this.state;
-    if (error) {
-      return <div>Ошибка: {error.message}</div>;
-    } else {
-      return (
-        <DataContext.Provider value={{...this.state, handleChange: this.handleChange}}>
+    return (
+      <>
+        <DataContext.Provider
+          value={{ ...this.state, handleChange: this.handleChange }}
+        >
           {this.props.children}
         </DataContext.Provider>
-      );
-    }
-  }
-}
+      </>
+    );
+  };
+};
