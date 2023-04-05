@@ -32,7 +32,7 @@ export const DataProviderFunc = (props) => {
 
   useEffect(() => {
     handleChange({ albums, n });
-  }, [n, albums]);
+  }, [albums, n]);
 
   return (
     <DataContextFunc.Provider

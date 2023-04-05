@@ -3,7 +3,7 @@ import { DataContextFunc } from "./ContextFunc";
 import { AlbumsMap } from "../Task2/AlbumsMap";
 import { InputForm } from "../InputForm";
 
-function AlbumsFunc () {
+function AlbumsFunc() {
   const context = React.useContext(DataContextFunc);
 
   const { newAlbumsAmount, albums, n, handleChange } = context;
@@ -12,12 +12,14 @@ function AlbumsFunc () {
     <div>
       <h3>Task 2</h3>
       <DataContextFunc.Consumer>
-        {(value) => (
+        {(value) => {
+          return (
           <>
             <AlbumsMap newAlbumsAmount={newAlbumsAmount} />
-            <InputForm onChange={handleChange} albums={albums} n={n} />
+            <InputForm newAlbumsAmount={newAlbumsAmount} albums={albums} n={n} onChange={handleChange} />
           </>
-        )}
+          )
+        }}
       </DataContextFunc.Consumer>
     </div>
   );
