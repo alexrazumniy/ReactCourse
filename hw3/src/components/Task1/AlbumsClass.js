@@ -1,7 +1,6 @@
 import React from "react";
 import { DataContext } from "./Context";
 import { AlbumsMap } from "./AlbumsMap";
-import { InputForm } from "../InputForm";
 
 
 export default class AlbumsClass extends React.Component {
@@ -11,11 +10,10 @@ export default class AlbumsClass extends React.Component {
         <h3>Task 1 Use Context</h3>
         <DataContext.Consumer>
           {(context) => {
-            const { newAlbumsAmount, handleChange } = context;
+            const { newAlbumsAmount } = context;
             return (
               <>
                 <AlbumsMap newAlbumsAmount={newAlbumsAmount} />
-                <InputForm onChange={handleChange} />
               </>
             );
           }}

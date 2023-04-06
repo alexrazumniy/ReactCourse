@@ -24,9 +24,10 @@ export const DataProviderFunc = (props) => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [error]);
 
-  const ValidateInput = useCallback((value) => {
+  const ValidateInput = useCallback(
+    (value) => {
       if (value === Number(value) && value > 0 && value <= albums.length) {
         return value;
       } else {
@@ -35,29 +36,31 @@ export const DataProviderFunc = (props) => {
         );
         return null;
       }
-    }, [albums.length]);
+    },
+    [albums.length]
+  );
 
-  const handleChange = useCallback((event) => {
-    event.preventDefault();
+  const handleChange = useCallback(
+    (event) => {
+      event.preventDefault();
 
-    const validatedValue = ValidateInput(event.target[0].value);
-    setNewAlbumsAmount(validatedValue);
-  }, [ValidateInput, setNewAlbumsAmount]);
+      const validatedValue = ValidateInput(event.target[0].value);
+      setNewAlbumsAmount(validatedValue);
+    },
+    [ValidateInput, setNewAlbumsAmount]
+  );
 
   return (
     <DataContextFunc.Provider
-      value={{ newAlbumsAmount, albums, n, handleChange }}
+      value={{
+        newAlbumsAmount: newAlbumsAmount,
+        albums: albums,
+        n: n,
+        ValidateInput,
+        handleChange,
+      }}
     >
       {props.children}
     </DataContextFunc.Provider>
   );
 };
-
-// const handleChange = ({ albums: newAlbumsAmount, n }) => {
-//   setNewAlbumsAmount(newAlbumsAmount.slice(0, n));
-//   setN(n);
-// };
-
-// useEffect(() => {
-//   handleChange({ albums, n });
-// }, [albums, n]);

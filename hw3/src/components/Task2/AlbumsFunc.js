@@ -1,28 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { DataContextFunc } from "./ContextFunc";
 import { AlbumsMap } from "../Task2/AlbumsMap";
-import { InputForm } from "../InputForm";
 
-function AlbumsFunc() {
-  const context = React.useContext(DataContextFunc);
-
-  const { newAlbumsAmount, albums, n, handleChange } = context;
+const AlbumsFunc = () => {
+  const { newAlbumsAmount } = useContext(DataContextFunc);
 
   return (
     <div>
       <h3>Task 2 Use Hooks</h3>
       <DataContextFunc.Consumer>
-        {(value) => {
+        {(context) => {
           return (
-          <>
-            <AlbumsMap newAlbumsAmount={newAlbumsAmount} />
-            <InputForm newAlbumsAmount={newAlbumsAmount} albums={albums} n={n} onChange={handleChange} />
-          </>
-          )
+            <>
+              <AlbumsMap newAlbumsAmount={newAlbumsAmount} />              
+            </>
+          );
         }}
       </DataContextFunc.Consumer>
     </div>
   );
-}
+};
 
 export default AlbumsFunc;
