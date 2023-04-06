@@ -3,6 +3,7 @@ import React from "react";
 export class AlbumsMap extends React.Component {
   render() {
     const {newAlbumsAmount} = this.props;
+    
     return (
       <div>
           {newAlbumsAmount.map(( album, index ) => (

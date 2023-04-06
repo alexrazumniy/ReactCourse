@@ -8,7 +8,7 @@ export default class AlbumsClass extends React.Component {
   render() {
     return (
       <div>
-        <h3>Task 1</h3>
+        <h3>Task 1 Use Context</h3>
         <DataContext.Consumer>
           {(context) => {
             const { newAlbumsAmount, handleChange } = context;

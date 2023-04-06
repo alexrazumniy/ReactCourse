@@ -1,24 +1,36 @@
-import React, { useRef } from 'react';
+import React, { useRef } from "react";
 
-export function InputForm (props) {
+export function InputForm(props) {
   const ref = useRef();
-
-  const handleInput = () => {
-    const res = ref.current.value;
-    return res;
-  }
-
-  const dataInput = (n) => {
+  console.log(props);
+  
+  const onSubmit = (event) => {
+    event.preventDefault();
+  };
+  
+  const dataInput = () => {
     if (props.onDataUpdate) {
-      const res = ref.current.value;
-      props.onDataUpdate(res);
+      const result = ref.current.value;
+      props.onDataUpdate({
+        albums: props.albums.slice(0, result),
+        n: result
+      });
     }
-  }
+  };
 
-    return(
-      <div>
-        <input className="input" id="input" placeholder="Введите значение от 1 до 100" ref={ref}/>
-        <button className="button" onClick={dataInput}>Submit</button>
-      </div>
-    )
+  return (
+    <div>
+      <form className="form" onSubmit={onSubmit}>
+      <input
+        className="input"
+        placeholder="Введите значение от 1 до 100"
+        ref={ref}
+        onChange={dataInput}
+      />
+      <button className="button" onClick={dataInput}>
+        Submit
+      </button>
+      </form>
+    </div>
+  );
 }

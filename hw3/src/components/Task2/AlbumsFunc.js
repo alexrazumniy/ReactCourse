@@ -10,7 +10,7 @@ function AlbumsFunc() {
 
   return (
     <div>
-      <h3>Task 2</h3>
+      <h3>Task 2 Use Hooks</h3>
       <DataContextFunc.Consumer>
         {(value) => {
           return (

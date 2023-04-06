@@ -4,8 +4,9 @@ export const DataContextFunc = React.createContext();
 
 export const DataProviderFunc = (props) => {
   const [albums, setAlbums] = useState([]);
-  const [newAlbumsAmount, setAlbumsAmount] = useState([]);
-  const [n, setN] = useState(0);
+  const [newAlbumsAmount, setNewAlbumsAmount] = useState([]);
+  const [n, setN] = useState(null);
+  // const [error, setError] = useState("null");
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/albums")
@@ -17,7 +18,7 @@ export const DataProviderFunc = (props) => {
       })
       .then((data) => {
         setAlbums(data);
-        setAlbumsAmount(data.slice());
+        setNewAlbumsAmount(data.slice());
         setN(data.length);
       })
       .catch((error) => {
@@ -26,7 +27,7 @@ export const DataProviderFunc = (props) => {
   }, []);
 
   const handleChange = ({ albums: newAlbumsAmount, n }) => {
-    setAlbumsAmount(newAlbumsAmount.slice(0, n));
+    setNewAlbumsAmount(newAlbumsAmount.slice(0, n));
     setN(n);
   };
 

@@ -6,13 +6,18 @@ export class DataProvider extends React.Component {
   state = {
     albums: [],
     newAlbumsAmount: [],
-    n: 0,
+    n: null,
     error: "",
   };
 
   componentDidMount() {
     fetch("https://jsonplaceholder.typicode.com/albums")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Cannot get data from server!");
+        }
+        return response.json();
+      })
       .then((albums) =>
         this.setState({
           albums: albums,
@@ -21,9 +26,7 @@ export class DataProvider extends React.Component {
         })
       )
       .catch((error) => {
-        if (!error.response.ok) {
-          this.setState({ error });
-        }
+        console.log(error);
       });
   }
 
@@ -47,5 +50,5 @@ export class DataProvider extends React.Component {
         </DataContext.Provider>
       </>
     );
-  };
-};
+  }
+}

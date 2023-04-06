@@ -45,7 +45,7 @@ export default function Videoplayer() {
     <div className="videoplayer">
       <h3>Task 3.2 Videoplayer</h3>
       <div>
-        <video className="video" ref={videoRef} controls>
+        <video className="video" ref={videoRef}>
           <source src={Video} type="video/mp4" />
         </video>
       </div>
