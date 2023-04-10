@@ -12,10 +12,10 @@ const User = ({
   changeToggle,
 }) => {
   return (
-    <div>
-      <hr />
+    <div className="user_info">
       <h3>User info</h3>
-      <h4 onClick={changeToggle}>{name}</h4>
+      <h4>{name}</h4>
+      <button className="button" onClick={changeToggle}>{toggled ? "Hide details" : "See details"}</button>
       {toggled && (
         <>
           <p>Email: {email}</p>

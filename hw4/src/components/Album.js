@@ -15,12 +15,12 @@ const Album = ({ title, thumbnailUrl, toggled, changeToggle }) => {
         {toggled ? (
           <>
             <img src={like} alt="like" />
-            <span>I dislike it</span>
+            <span className="like_it_text">I dislike it</span>
           </>
         ) : (
           <>
             <img src={dislike} alt="dislike" />
-            <span>I like it</span>
+            <span className="like_it_text">I like it</span>
           </>
         )}
       </button>

@@ -11,10 +11,37 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
+
+  .user_info {
+    line-height: 12px;
+  }
+
+  .button {
+    padding: 5px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(52, 182, 110);
+    box-shadow: 2px 2px 2px;
+    cursor: pointer;
+  }
   
+  .button:hover {
+    box-shadow: none;
+    transform: translate(2px, 2px);
+    cursor: pointer;
+  }
+
   .like_btn {
     display: flex;
     align-items: center;
     border: none;
     background-color: transparent;
   }
+
+  .like_it_text {
+    margin-left: 10px;
+    font-weight: bold;
+  }
+
+  
