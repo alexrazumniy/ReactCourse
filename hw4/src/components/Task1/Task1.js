@@ -6,7 +6,7 @@ import { albumData } from "./data/albumData";
 const Task1 = () => {
   return (
     <div>
-      <h3>TASK 1</h3>
+      <h2>TASK #1</h2>
       <User
         name={userData.name}
         email={userData.email}

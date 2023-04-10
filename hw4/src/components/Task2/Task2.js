@@ -6,7 +6,7 @@ const ALBUMS_BASE_URL = "https://jsonplaceholder.typicode.com/albums/1/photos?_l
 const Task2 = () => {
   return (
     <div>
-      <h3>TASK 2</h3>
+      <h2>TASK #2</h2>
       <UsersList url={USERS_BASE_URL} />
       <hr />
       <Albumslist url={ALBUMS_BASE_URL} />

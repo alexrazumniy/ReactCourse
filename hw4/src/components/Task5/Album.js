@@ -1,6 +1,4 @@
-import { withFetchingData } from "./withFetchingData";
-
-const Album = ({ title, thumbnailUrl }) => {
+export const Album = ({ title, thumbnailUrl }) => {
   return (
     <div className="album">
       <h4>{title}</h4>
@@ -10,5 +8,3 @@ const Album = ({ title, thumbnailUrl }) => {
     </div>
   );
 };
-
-export default withFetchingData(Album);
