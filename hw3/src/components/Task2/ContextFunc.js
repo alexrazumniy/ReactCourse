@@ -28,25 +28,29 @@ export const DataProviderFunc = (props) => {
 
   const validateInput = useCallback(
     (value) => {
-      if (value === Number(value) && value > 0 && value <= albums.length) {
-        return value;
+      const amount = Number(value);
+      if (amount > 0 && amount <= albums.length) {
+        return amount;
       } else {
         setError(
           `Wrong value! Please enter the number from 1 to ${albums.length}`
-          );
-          console.log(value);
+        );
+
+        return 0;
       }
-    }, [albums] );
+    },
+    [albums]
+  );
 
   const handleChange = useCallback(
     (event) => {
       event.preventDefault();
 
       const validatedValue = validateInput(event.target[0].value);
-      setNewAlbumsAmount(validatedValue); ////////
-      console.log(validatedValue);
+      const albumsToRender = albums.slice(0, validatedValue);
+      setNewAlbumsAmount(albumsToRender);
     },
-    [validateInput, setNewAlbumsAmount]
+    [albums]
   );
 
   return (

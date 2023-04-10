@@ -10,9 +10,9 @@ export default class App extends React.Component {
     return (
       <div>
         <AlbumsClass />
-        <AlbumsFunc />
         <h3>Task 1***</h3>
         <InputForm />
+        <AlbumsFunc />
         <SquareComponent />
         <Videoplayer />
       </div>

@@ -1,10 +1,12 @@
 import User from "./User";
+import Album from "./Album";
 import { userData } from "../data/userData";
+import { albumData } from "../data/albumData";
 
 const Task1 = () => {
   return (
     <div>
-      <h3>Task 1</h3>
+      <h3>TASK 1</h3>
       <User
         name={userData.name}
         email={userData.email}
@@ -13,6 +15,10 @@ const Task1 = () => {
         city={userData.address.city}
         phone={userData.phone}
         companyName={userData.company.name}
+      />
+      <Album
+        title={albumData.title}
+        thumbnailUrl={albumData.thumbnailUrl}
       />
     </div>
   );
