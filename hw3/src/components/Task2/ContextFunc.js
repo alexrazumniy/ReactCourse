@@ -35,7 +35,6 @@ export const DataProviderFunc = (props) => {
         setError(
           `Wrong value! Please enter the number from 1 to ${albums.length}`
         );
-
         return 0;
       }
     },
@@ -55,13 +54,7 @@ export const DataProviderFunc = (props) => {
 
   return (
     <DataContextFunc.Provider
-      value={{
-        newAlbumsAmount: newAlbumsAmount,
-        albums: albums,
-        n: n,
-        validateInput,
-        handleChange,
-      }}
+      value={{ newAlbumsAmount, albums, n, validateInput, handleChange }}
     >
       {props.children}
     </DataContextFunc.Provider>
