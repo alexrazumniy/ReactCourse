@@ -49,12 +49,12 @@ export const DataProviderFunc = (props) => {
       const albumsToRender = albums.slice(0, validatedValue);
       setNewAlbumsAmount(albumsToRender);
     },
-    [albums]
+    [validateInput, setNewAlbumsAmount]
   );
 
   return (
     <DataContextFunc.Provider
-      value={{ newAlbumsAmount, albums, n, validateInput, handleChange }}
+      value={{ newAlbumsAmount, albums, n, error, validateInput, handleChange }}
     >
       {props.children}
     </DataContextFunc.Provider>
