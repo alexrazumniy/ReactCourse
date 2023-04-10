@@ -20,8 +20,8 @@ export class DataProvider extends React.Component {
       })
       .then((albums) =>
         this.setState({
-          albums: albums,
-          newAlbumsAmount: albums.slice(),
+          albums,
+          newAlbumsAmount: albums,
           n: albums.length,
         })
       )

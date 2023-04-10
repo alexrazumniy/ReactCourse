@@ -1,22 +1,19 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import "../../App.css";
-import Video from "../video/butterfly.mp4";
+import Video from "../assets/butterfly.mp4";
 
-export default function Videoplayer() {
-  const videoRef = useRef();
+export default function VideoPlayer() {
+  const videoRef = useRef(null);
   const [currentTime, setCurrentTime] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
 
   const playButton = () => {
     const video = videoRef.current;
     video.play();
-    setIsPlaying(true);
   };
 
   const pauseButton = () => {
     const video = videoRef.current;
     video.pause();
-    setIsPlaying(false);
   };
 
   const updateTime = () => {
@@ -27,6 +24,7 @@ export default function Videoplayer() {
   useEffect(() => {
     const video = videoRef.current;
     video.addEventListener("timeupdate", updateTime);
+
     return () => {
       video.removeEventListener("timeupdate", updateTime);
     };
@@ -43,7 +41,7 @@ export default function Videoplayer() {
 
   return (
     <div className="videoplayer">
-      <h3>Task 3.2 Videoplayer</h3>
+      <h3>Task 3.2 Video Player</h3>
       <div>
         <video className="video" ref={videoRef}>
           <source src={Video} type="video/mp4" />

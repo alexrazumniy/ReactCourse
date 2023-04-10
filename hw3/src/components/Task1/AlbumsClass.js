@@ -1,6 +1,6 @@
 import React from "react";
 import { DataContext } from "./Context";
-import { AlbumsMap } from "./AlbumsMap";
+import { AlbumsMap } from "./AlbumsClsMap";
 
 
 export default class AlbumsClass extends React.Component {
@@ -9,13 +9,8 @@ export default class AlbumsClass extends React.Component {
       <div>
         <h3>Task 1 Use Context</h3>
         <DataContext.Consumer>
-          {(context) => {
-            const { newAlbumsAmount } = context;
-            return (
-              <>
-                <AlbumsMap newAlbumsAmount={newAlbumsAmount} />
-              </>
-            );
+          {({ newAlbumsAmount }) => {            
+            return <AlbumsMap newAlbumsAmount={newAlbumsAmount} />
           }}
         </DataContext.Consumer>
       </div>

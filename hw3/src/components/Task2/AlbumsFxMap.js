@@ -2,7 +2,7 @@ import React from "react";
 
 export const AlbumsMap = (props) => {
   const { newAlbumsAmount } = props;
-
+console.log(props); ////////
   return (
     <div>
       {newAlbumsAmount.map((album, index) => (

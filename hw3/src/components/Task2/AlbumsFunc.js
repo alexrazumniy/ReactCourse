@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { DataContextFunc } from "./ContextFunc";
-import { AlbumsMap } from "../Task2/AlbumsMap";
+import { AlbumsMap } from "../Task2/AlbumsFxMap";
 
 const AlbumsFunc = () => {
   const { newAlbumsAmount } = useContext(DataContextFunc);
@@ -8,15 +8,7 @@ const AlbumsFunc = () => {
   return (
     <div>
       <h3>Task 2 Use Hooks</h3>
-      <DataContextFunc.Consumer>
-        {(context) => {
-          return (
-            <>
-              <AlbumsMap newAlbumsAmount={newAlbumsAmount} />              
-            </>
-          );
-        }}
-      </DataContextFunc.Consumer>
+      <AlbumsMap newAlbumsAmount={newAlbumsAmount} />
     </div>
   );
 };

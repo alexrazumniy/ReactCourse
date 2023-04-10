@@ -2,14 +2,21 @@ import React from "react";
 import "../../App.css";
 
 export default class SquareComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.timerId = null;
+  }
+
   squareRef = React.createRef();
 
   componentDidMount() {
-    setTimeout(() => {
+    this.timerId = setTimeout(() => {
       this.squareRef.current.style.transform = "translateX(200px)";
     }, 2000);
+  }
 
-    return clearTimeout();
+  componentWillUnmount() {
+    clearTimeout(this.timerId);
   }
 
   render() {

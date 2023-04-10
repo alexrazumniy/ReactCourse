@@ -8,9 +8,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <DataProviderFunc>
-    <DataProvider>
-      <App />
-    </DataProvider>
+      <DataProvider>
+        <App />
+      </DataProvider>
     </DataProviderFunc>
   </React.StrictMode>
 );
