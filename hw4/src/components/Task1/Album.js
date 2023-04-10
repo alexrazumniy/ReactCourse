@@ -1,11 +1,10 @@
-import { withToggler } from "../HOCs/withToggler";
-import like from "../assets/like.png";
-import dislike from "../assets/dislike.png";
+import { withToggler } from "./withToggler";
+import like from "./assets/like.png";
+import dislike from "./assets/dislike.png";
 
 const Album = ({ title, thumbnailUrl, toggled, changeToggle }) => {
   return (
     <div>
-      <hr />
       <h3>Album info</h3>
       <h4>{title}</h4>
       <div>
@@ -24,6 +23,7 @@ const Album = ({ title, thumbnailUrl, toggled, changeToggle }) => {
           </>
         )}
       </button>
+      <hr />
     </div>
   );
 };

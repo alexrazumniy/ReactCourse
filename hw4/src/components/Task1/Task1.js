@@ -1,7 +1,7 @@
 import User from "./User";
 import Album from "./Album";
-import { userData } from "../data/userData";
-import { albumData } from "../data/albumData";
+import { userData } from "./data/userData";
+import { albumData } from "./data/albumData";
 
 const Task1 = () => {
   return (

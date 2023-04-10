@@ -1,4 +1,4 @@
-import { withToggler } from "../HOCs/withToggler";
+import { withToggler } from "./withToggler";
 
 const User = ({
   name,
@@ -13,9 +13,10 @@ const User = ({
 }) => {
   return (
     <div className="user_info">
-      <h3>User info</h3>
       <h4>{name}</h4>
-      <button className="button" onClick={changeToggle}>{toggled ? "Hide details" : "See details"}</button>
+      <button className="button" onClick={changeToggle}>
+        {toggled ? "Hide details" : "See details"}
+      </button>
       {toggled && (
         <>
           <p>Email: {email}</p>
@@ -26,6 +27,7 @@ const User = ({
           <p>Company: {companyName}</p>
         </>
       )}
+      <hr />
     </div>
   );
 };
