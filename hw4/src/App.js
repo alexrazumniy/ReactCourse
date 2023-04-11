@@ -8,11 +8,11 @@ import Task5 from "./components/Task5/Task5";
 function App() {
   return (
     <div>
-      <Task1 />
-      <Task2 />
-      <Task3 />
+      {/* <Task1 /> */}
+      {/* <Task2 /> */}
+      {/* <Task3 /> */}
       <Task4 />
-      <Task5 />
+      {/* <Task5 /> */}
     </div>
   );
 }
