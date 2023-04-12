@@ -1,6 +1,6 @@
 import React from "react";
 import Tooltip from "./Tooltip";
-// import ProductTooltip from "./ProductTooltip";
+import ProductTooltip from "./ProductTooltip";
 
 export const ProductCard = ({ image, title, description, price, rating }) => {
   const content = { title, price, rating };
@@ -13,10 +13,11 @@ export const ProductCard = ({ image, title, description, price, rating }) => {
       <h3 className="product_title">{title}</h3>
       <p>{description}</p>
 
-      {/* <Tooltip 
+      <Tooltip
         renderTooltip={(position) => (
-          position={position})}      
-      /> */}
+          <ProductTooltip position={position} content={content} />
+        )}
+      />
     </div>
   );
 };
