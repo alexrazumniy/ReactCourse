@@ -15,7 +15,7 @@ export const useFetch = (url) => {
         throw new Error({ message: "Something went wrong..." });
       })
       .then((json) => setData(json))
-      .catch((error) => setError(error.message))
+      .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
     }, [url]);
 

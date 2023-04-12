@@ -55,3 +55,61 @@ code {
   margin-left: 10px;
   font-weight: bold;
 }
+
+.card_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  justify-content: start;
+  align-items: start;
+  gap: 20px;
+}
+
+.product_card {
+  position: relative;
+  text-align: center;
+  padding: 20px;
+  width: 450px;
+  height: 550px;
+  box-shadow: 2px 4px 8px rgb(157, 157, 194);
+  border-radius: 5px;
+}
+
+.product_card:hover {
+  box-shadow: 4px 6px 6px 2px rgb(148, 212, 148);
+  transform: translate(2px, 2px)
+}
+
+.product_img_container {
+  margin: 0 auto;
+  width: 200px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.product_img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.product_title {
+  margin: 0;
+}
+
+.tooltip {
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 150px;
+  background-color: #7ccf6b;
+}
+
+.tooltip_title {
+  margin: 10px;
+}
+
+.tooltip_option {
+  margin: 8px;
+}
