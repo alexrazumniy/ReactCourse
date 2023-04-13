@@ -3,7 +3,7 @@ import { Users } from "./UsersList";
 
 const Task5 = () => {
   return (
-    <div>
+    <div className="task_container">
       <h2>TASK #5</h2>
       <h3>USERS</h3>
       <Users />

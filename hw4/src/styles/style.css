@@ -12,13 +12,51 @@ code {
     monospace;
 }
 
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header_nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 700px;
+  margin: 0 auto;
+  padding: 25px 50px;
+  font-weight: 500;
+  box-shadow: 2px 4px 8px rgb(157, 157, 194);
+}
+
+.back-btn {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70px;
+  font-size: 14px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.main_page_content {
+  margin-top: 100px;
+  text-align: center;
+  font-size: 36px;
+}
+
+.task_container {
+  margin: 0 auto;
+  text-align: center;
+}
+
 .user_info {
   line-height: 12px;
 }
 
 .album {
   padding: 15px;
-  margin: 15px;
+  margin: 15px auto;
   width: 500px;
   border-radius: 5px;
   box-shadow: 2px 4px 8px rgb(157, 157, 194);
@@ -41,7 +79,7 @@ code {
 }
 
 .like_btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   border: none;
   background-color: transparent;
@@ -56,9 +94,14 @@ code {
   font-weight: bold;
 }
 
+.task_3_title, 
+.task_3_subtitle {
+  text-align: center;
+}
+
 .card_container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   justify-content: start;
   align-items: start;
   gap: 20px;
@@ -67,11 +110,12 @@ code {
 .product_card {
   text-align: center;
   padding: 20px;
-  width: 450px;
+  width: 400px;
   height: 400px;
   box-shadow: 2px 4px 8px rgb(157, 157, 194);
   border-radius: 5px;
 }
+
 /* 
 .product_card:hover {
   box-shadow: 4px 6px 6px 2px rgb(148, 212, 148);

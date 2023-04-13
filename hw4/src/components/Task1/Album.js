@@ -4,7 +4,7 @@ import dislike from "./assets/dislike.png";
 
 const Album = ({ title, thumbnailUrl, toggled, changeToggle }) => {
   return (
-    <div>
+    <div className="task_container">
       <h3>Album info</h3>
       <h4>{title}</h4>
       <div>
