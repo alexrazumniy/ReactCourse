@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const Tooltip = ({ renderTooltip, content }) => {
   const [position, setPosition] = useState({ tooltipX: 0, tooltipY: 0 });
@@ -13,16 +13,11 @@ const Tooltip = ({ renderTooltip, content }) => {
   };
 
   return (
-    <div
-      className="tooltip"
-      onMouseEnter={toggleTooltip}
-      onMouseLeave={toggleTooltip}
-      onMouseMove={handleMouseMove}
-    >
+    <div>
       {renderTooltip(toggleTooltip, handleMouseMove)}
 
       {isTooltipShown && (
-        <div style={{ left: position.tooltipX, top: position.tooltipY }}>
+        <div className="tooltip" style={{ left: position.tooltipX, top: position.tooltipY }}>
           {content}
         </div>
       )}
