@@ -5,11 +5,6 @@ export const ProductCard = ({ image, title, description, price, rating }) => {
   return (
     <div className="product_card">
       <div className="product_img_container">
-        <img src={image} className="product_img" alt="cover" />
-      </div>
-      <h3 className="product_title">{title}</h3>
-      <p className="product_description">{description}</p>
-
       <Tooltip
         content={
           <div>
@@ -19,13 +14,16 @@ export const ProductCard = ({ image, title, description, price, rating }) => {
           </div>
         }
         renderTooltip={(toggleTooltip, handleMouseMove) => (
-          <img className="product_img" alt="title"
+          <img className="product_img" src={image} alt="cover"
             onMouseEnter={toggleTooltip}
             onMouseLeave={toggleTooltip}
             onMouseMove={handleMouseMove}
           />
         )}
       />
+      </div>
+      <h3 className="product_title">{title}</h3>
+      <p className="product_description">{description}</p>      
     </div>
   );
 };

@@ -65,7 +65,6 @@ code {
 }
 
 .product_card {
-  position: relative;
   text-align: center;
   padding: 20px;
   width: 450px;
@@ -80,10 +79,10 @@ code {
 } */
 
 .product_img_container {
+  position: relative;
   margin: 0 auto;
   width: 300px;
   height: 200px;
-  overflow: hidden;
 }
 
 .product_img {
@@ -103,13 +102,10 @@ code {
 }
 
 .tooltip {
-  z-index: 99;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 300px;
-  height: 150px;
-  background-color: #7ccf6b;
+  position: fixed;
+  width: 250px;
+  height: auto;
+  background-color: #b8d6b2;
 }
 
 .tooltip_title {

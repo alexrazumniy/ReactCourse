@@ -13,11 +13,12 @@ const Tooltip = ({ renderTooltip, content }) => {
   };
 
   return (
-    <div className="tooltip"
-      onMouseEnter={toggleTooltip}
-      onMouseLeave={toggleTooltip}
-      onMouseMove={handleMouseMove}
-    >
+    // <div
+    //   onMouseEnter={toggleTooltip}
+    //   onMouseLeave={toggleTooltip}
+    //   onMouseMove={handleMouseMove}
+    // >
+    <>
       {renderTooltip(toggleTooltip, handleMouseMove)}
 
       {isTooltipShown && (
@@ -27,7 +28,8 @@ const Tooltip = ({ renderTooltip, content }) => {
           {content}
         </div>
       )}
-    </div>
+      </>
+    // </div>
   );
 };
 
