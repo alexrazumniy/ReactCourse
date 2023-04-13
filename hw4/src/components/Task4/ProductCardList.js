@@ -6,11 +6,9 @@ const ProductCardList = () => {
   const { data: products, loading, error } = useFetch(PRODUCTS_BASE_URL);
   return (
     <div className="card_container">
-      {loading && <div>Loader...</div>}
+      {loading && <div>loading...</div>}
       {error && !loading && <div>Something went wrong... Error: {error}</div>}
-      {!error &&
-        !loading &&
-        products?.map((product) => (
+      {!error && !loading && products?.map((product) => (
           <ProductCard
             {...product}
             key={product.id}
