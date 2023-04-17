@@ -69,11 +69,10 @@ const TasksListDescription = () => {
 };
 const TasksID = () => {
   const { tasksId, content } = useParams();
-  const taskContent = tasksList[content];
 
-  console.log(tasksId, tasksList[content]);
+  console.log(tasksId, content);
 
-  return <div>TaskId : {taskContent}</div>; //// вывод описания задания
+  return <div>TaskId : { content }</div>; //// здесь вывод описания задания
 };
 
 const GoBackButton = () => {
