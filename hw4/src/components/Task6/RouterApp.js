@@ -13,12 +13,12 @@ import Task2 from "../Task2/Task2";
 import Task3 from "../Task3/Task3";
 import Task4 from "../Task4/Task4";
 import Task5 from "../Task5/Task5";
-import { TaskDescription1 } from "../Task6/TaskDescription1";
-import { TaskDescription2 } from "../Task6/TaskDescription2";
-import { TaskDescription3 } from "../Task6/TaskDescription3";
-import { TaskDescription4 } from "../Task6/TaskDescription4";
-import { TaskDescription5 } from "../Task6/TaskDescription5";
-import { TaskDescription6 } from "../Task6/TaskDescription6";
+import { TaskDescription1 } from "../Task6/TaskDescription";
+import { TaskDescription2 } from "../Task6/TaskDescription";
+import { TaskDescription3 } from "../Task6/TaskDescription";
+import { TaskDescription4 } from "../Task6/TaskDescription";
+import { TaskDescription5 } from "../Task6/TaskDescription";
+import { TaskDescription6 } from "../Task6/TaskDescription";
 
 import backBtn from "./arrow-left.png";
 import forwardBtn from "./arrow-right.png";
@@ -65,12 +65,13 @@ const TasksListDescription = () => {
     </div>
   );
 };
-const TasksID = () => {
-  const { tasksId, content } = useParams();
 
-  console.log(tasksId, content);
+const TasksDescription = () => {
+  const { tasksId } = useParams();
 
-  return <div>TaskId : { content }</div>; //// здесь вывод описания задания
+  const taskNumber = Number(tasksId) - 1
+
+  return <div>{ tasksList[taskNumber].content }</div>;
 };
 
 const GoBackButton = () => {
@@ -197,7 +198,7 @@ const RouterApp = () => {
         <Route path="task_4" element={<Task4 />} />
         <Route path="task_5" element={<Task5 />} />
         <Route path="task_description" element={<TasksListDescription />}>
-          <Route path=":tasksId" element={<TasksID />} />
+          <Route path=":tasksId" element={<TasksDescription />} />
         </Route>
       </Routes>
     </div>
