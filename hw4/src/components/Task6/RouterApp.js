@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import {
   Routes,
   Route,
-  Navigate,
   Link,
   Outlet,
   useParams,
   NavLink,
   useNavigate,
-  useLocation,
 } from "react-router-dom";
 import Task1 from "../Task1/Task1";
 import Task2 from "../Task2/Task2";
@@ -47,7 +45,7 @@ const tasksList = [
 
 const TasksListDescription = () => {
   const navigate = useNavigate();
-
+  
   return (
     <div>
       <h2>Здесь приведено описание всех заданий</h2>
@@ -77,11 +75,11 @@ const TasksID = () => {
 
 const GoBackButton = () => {
   const navigate = useNavigate();
-  const handleButton = () => {
+  const handleStep = () => {
       navigate(-1)
   }
   return(
-      <button className="back-btn" onClick={handleButton}>
+      <button className="back-btn" onClick={handleStep}>
           {<img src={backBtn} alt="back"/>}
       </button>
   )
@@ -89,11 +87,11 @@ const GoBackButton = () => {
 
 const GoForwardButton = () => {
   const navigate = useNavigate();
-  const handleButton = () => {
+  const handleStep = () => {
       navigate(+1)
   }
   return(
-      <button className="forward-btn" onClick={handleButton}>
+      <button className="forward-btn" onClick={handleStep}>
           {<img src={forwardBtn} alt="forward"/>}
       </button>
   )
