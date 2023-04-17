@@ -13,12 +13,12 @@ import Task2 from "../Task2/Task2";
 import Task3 from "../Task3/Task3";
 import Task4 from "../Task4/Task4";
 import Task5 from "../Task5/Task5";
-import { TaskDescription1 } from "../Task6/TaskDescription";
-import { TaskDescription2 } from "../Task6/TaskDescription";
-import { TaskDescription3 } from "../Task6/TaskDescription";
-import { TaskDescription4 } from "../Task6/TaskDescription";
-import { TaskDescription5 } from "../Task6/TaskDescription";
-import { TaskDescription6 } from "../Task6/TaskDescription";
+import { TaskDescription1 } from "../Task6/TasksDescription";
+import { TaskDescription2 } from "../Task6/TasksDescription";
+import { TaskDescription3 } from "../Task6/TasksDescription";
+import { TaskDescription4 } from "../Task6/TasksDescription";
+import { TaskDescription5 } from "../Task6/TasksDescription";
+import { TaskDescription6 } from "../Task6/TasksDescription";
 
 import backBtn from "./arrow-left.png";
 import forwardBtn from "./arrow-right.png";
@@ -69,7 +69,7 @@ const TasksListDescription = () => {
 const TasksDescription = () => {
   const { tasksId } = useParams();
 
-  const taskNumber = Number(tasksId) - 1
+  const taskNumber = Number(tasksId) - 1 // Привязка индекса к ключу tasksId
 
   return <div>{ tasksList[taskNumber].content }</div>;
 };
