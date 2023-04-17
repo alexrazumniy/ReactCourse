@@ -9,23 +9,21 @@ import {
   NavLink,
   useNavigate,
   useLocation,
-  useHistory,
-  useNavigation,
 } from "react-router-dom";
 import Task1 from "../Task1/Task1";
 import Task2 from "../Task2/Task2";
 import Task3 from "../Task3/Task3";
 import Task4 from "../Task4/Task4";
 import Task5 from "../Task5/Task5";
-import { Task1Description } from "../Task6/TasksDescription";
-import { Task2Description } from "../Task6/TasksDescription";
-import { Task3Description } from "../Task6/TasksDescription";
-import { Task4Description } from "../Task6/TasksDescription";
-import { Task5Description } from "../Task6/TasksDescription";
-import { Task6Description } from "../Task6/TasksDescription";
-import { TasksDescription } from "../Task6/TasksDescription";
+import { TaskDescription1 } from "../Task6/TaskDescription1";
+import { TaskDescription2 } from "../Task6/TaskDescription2";
+import { TaskDescription3 } from "../Task6/TaskDescription3";
+import { TaskDescription4 } from "../Task6/TaskDescription4";
+import { TaskDescription5 } from "../Task6/TaskDescription5";
+import { TaskDescription6 } from "../Task6/TaskDescription6";
 
-import buttonback from "./left-arrow-button.svg";
+import backBtn from "./arrow-left.png";
+import forwardBtn from "./arrow-right.png";
 
 const Main = () => {
   return (
@@ -38,28 +36,30 @@ const Main = () => {
   );
 };
 
+const tasksList = [
+  { tasksId: 1, name: "Task #1 - Toggler HOC", content: <TaskDescription1 /> },
+  { tasksId: 2, name: "Task #2 - Fetching Data HOC", content: <TaskDescription2 /> },
+  { tasksId: 3, name: "Task #3 - Render-props", content: <TaskDescription3 /> },
+  { tasksId: 4, name: "Task #4 - Tooltip", content: <TaskDescription4 /> },
+  { tasksId: 5, name: "Task #5 - Custom hooks", content: <TaskDescription5 /> },
+  { tasksId: 6, name: "Task #6 - React Router", content: <TaskDescription6 /> },
+];
+
 const TasksListDescription = () => {
-  const tasksList = [
-    "Task #1 - Toggler HOC",
-    "Task #2 - Fetching Data HOC",
-    "Task #3 - Render-props",
-    "Task #4 - Tooltip",
-    "Task #5 - Custom hooks",
-    "Task #6 - React Router",
-  ];
-  
+  const navigate = useNavigate();
+
   return (
     <div>
       <h2>Здесь приведено описание всех заданий</h2>
-      {tasksList.map((taskId) => (
+      {tasksList.map(({ tasksId, name, content }) => (
         <Link
-          key={tasksList.key}
           className="task_description_link"
-          to={`/task_description/${taskId}`}
-
-          // onClick={() => navigate(`/${taskId}`, { state: tasksList.taskId })}
+          key={tasksId}
+          content={content}
+          to={`${tasksId}`}
+          onClick={() => navigate(`${tasksId}`, { state: content })}
         >
-          {taskId}
+          {name}
         </Link>
       ))}
 
@@ -67,20 +67,40 @@ const TasksListDescription = () => {
     </div>
   );
 };
-
 const TasksID = () => {
-  const { tasksId } = useParams();
+  const { tasksId, content } = useParams();
+  const taskContent = tasksList[content];
 
-  return <div>TaskId : {tasksId}</div>; //// вывод описания задания
+  console.log(tasksId, tasksList[content]);
+
+  return <div>TaskId : {taskContent}</div>; //// вывод описания задания
 };
 
+const GoBackButton = () => {
+  const navigate = useNavigate();
+  const handleButton = () => {
+      navigate(-1)
+  }
+  return(
+      <button className="back-btn" onClick={handleButton}>
+          {<img src={backBtn} alt="back"/>}
+      </button>
+  )
+}
+
+const GoForwardButton = () => {
+  const navigate = useNavigate();
+  const handleButton = () => {
+      navigate(+1)
+  }
+  return(
+      <button className="forward-btn" onClick={handleButton}>
+          {<img src={forwardBtn} alt="forward"/>}
+      </button>
+  )
+} 
+
 const RouterApp = () => {
-  // const history = useNavigation();
-
-  // const goHome = () => {
-  //   history.push("/");
-  // };
-
   return (
     <div className="container">
       <nav className="header_nav">
@@ -168,9 +188,8 @@ const RouterApp = () => {
             Task description
           </NavLink>
         </div>
-        <button className="back-btn">
-          <img src={buttonback} alt="back" /> back
-        </button>
+        <GoBackButton />
+        <GoForwardButton />
       </nav>
       <Routes>
         <Route path="*" element={<Main />} />

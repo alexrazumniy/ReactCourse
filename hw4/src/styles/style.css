@@ -29,14 +29,9 @@ code {
   box-shadow: 2px 4px 8px rgb(157, 157, 194);
 }
 
-.back-btn {
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 70px;
-  font-size: 14px;
+.back-btn, .forward-btn {
+  margin-right: -20px;
   border: none;
-  background-color: transparent;
   cursor: pointer;
 }
 
