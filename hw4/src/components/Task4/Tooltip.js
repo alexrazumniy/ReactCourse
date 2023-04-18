@@ -19,7 +19,7 @@ const Tooltip = ({ renderTooltip, content }) => {
       {isTooltipShown && (
         <div
           className="tooltip"
-          style={{ left: position.tooltipX, top: position.tooltipY }}
+          style={{ left: position.tooltipX + 2, top: position.tooltipY + 2 }}
         >
           {content}
         </div>

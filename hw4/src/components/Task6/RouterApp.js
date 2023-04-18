@@ -45,7 +45,7 @@ const tasksList = [
 
 const TasksListDescription = () => {
   const navigate = useNavigate();
-  
+
   return (
     <div>
       <h2>Здесь приведено описание всех заданий</h2>
@@ -68,127 +68,66 @@ const TasksListDescription = () => {
 
 const TasksDescription = () => {
   const { tasksId } = useParams();
+  const taskNumber = Number(tasksId) - 1; // Привязка индекса к ключу tasksId
 
-  const taskNumber = Number(tasksId) - 1 // Привязка индекса к ключу tasksId
-
-  return <div>{ tasksList[taskNumber].content }</div>;
+  return <div>{tasksList[taskNumber].content}</div>;
 };
 
 const GoBackButton = () => {
   const navigate = useNavigate();
   const handleStep = () => {
-      navigate(-1)
-  }
-  return(
-      <button className="back-btn" onClick={handleStep}>
-          {<img src={backBtn} alt="back"/>}
-      </button>
-  )
-}
+    navigate(-1);
+  };
+  return (
+    <button className="back-btn" onClick={handleStep}>
+      {<img src={backBtn} alt="back" />}
+    </button>
+  );
+};
 
 const GoForwardButton = () => {
   const navigate = useNavigate();
   const handleStep = () => {
-      navigate(+1)
-  }
-  return(
-      <button className="forward-btn" onClick={handleStep}>
-          {<img src={forwardBtn} alt="forward"/>}
-      </button>
-  )
-} 
+    navigate(+1);
+  };
+  return (
+    <button className="forward-btn" onClick={handleStep}>
+      {<img src={forwardBtn} alt="forward" />}
+    </button>
+  );
+};
 
 const RouterApp = () => {
+  const links = [
+    { id: 1, link: "/", name: "Main" },
+    { id: 2, link: "task_1", name: "Task 1" },
+    { id: 3, link: "task_2", name: "Task 2" },
+    { id: 4, link: "task_3", name: "Task 3" },
+    { id: 5, link: "task_4", name: "Task 4" },
+    { id: 6, link: "task_5", name: "Task 5" },
+    { id: 7, link: "task_description", name: "Tasks Description" },
+  ];
   return (
     <div className="container">
-      <nav className="header_nav">
-        <div>
-          <NavLink
-            style={({ isActive }) => {
-              return {
-                backgroundColor: isActive ? "#9AFE2E" : "transparent",
-              };
-            }}
-            to="/"
-          >
-            Main
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            style={({ isActive }) => {
-              return {
-                backgroundColor: isActive ? "#9AFE2E" : "transparent",
-              };
-            }}
-            to="/task_1"
-          >
-            Task 1
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            style={({ isActive }) => {
-              return {
-                backgroundColor: isActive ? "#9AFE2E" : "transparent",
-              };
-            }}
-            to="/task_2"
-          >
-            Task 2
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            style={({ isActive }) => {
-              return {
-                backgroundColor: isActive ? "#9AFE2E" : "transparent",
-              };
-            }}
-            to="/task_3"
-          >
-            Task 3
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            style={({ isActive }) => {
-              return {
-                backgroundColor: isActive ? "#9AFE2E" : "transparent",
-              };
-            }}
-            to="/task_4"
-          >
-            Task 4
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            style={({ isActive }) => {
-              return {
-                backgroundColor: isActive ? "#9AFE2E" : "transparent",
-              };
-            }}
-            to="/task_5"
-          >
-            Task 5
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            style={({ isActive }) => {
-              return {
-                backgroundColor: isActive ? "#9AFE2E" : "transparent",
-              };
-            }}
-            to="/task_description"
-          >
-            Task description
-          </NavLink>
-        </div>
+      <ul className="header_nav">
+          {links.map(({id, link, name}) => (
+            <li>
+            <NavLink className="nav_link"
+              key={id}
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "#9AFE2E" : "transparent",
+                };
+              }}
+              to={link}
+            >
+              {name}
+            </NavLink>
+            </li>
+          ))}
         <GoBackButton />
         <GoForwardButton />
-      </nav>
+      </ul>
       <Routes>
         <Route path="*" element={<Main />} />
         <Route path="/" element={<Main />} />

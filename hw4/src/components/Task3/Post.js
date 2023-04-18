@@ -1,5 +1,5 @@
 export const Post = ({ post }) => {
-  const { title = post.title, completed = post.completed } = post;
+  const { title, completed } = post;
   return (
     <li>
       <div>{`Title: ${title} - completed: ${completed}`}</div>
