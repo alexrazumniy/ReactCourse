@@ -6,9 +6,10 @@ import visa_cardfront from "../assets/visa_cardfront.png";
 
 const CardContainer = styled.div`
   position: relative;
-  width: 534px;
-  height: 334px;
-  border-radius: 48px;
+  width: 355px;
+  height: 220px;
+  border-radius: 32px;
+  font-family: "Segoe UI";
 `;
 
 const CardBackground = styled.img`
@@ -17,32 +18,34 @@ const CardBackground = styled.img`
 
 const Chip = styled.img`
   position: absolute;
-  left: 55px;
-  top: 85px;
+  left: 35px;
+  top: 40px;
 `;
 
 const Code = styled.span`
   position: absolute;
-  left: 10%;
-  top: 50%;
+  left: 35px;
+  top: 100px;
   color: #fff;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 20px;
+  letter-spacing: 3px;
 `;
 
 const CardOwner = styled.span`
   position: absolute;
-  left: 11%;
-  top: calc(50% - 31px / 2 + 85px);
+  left: 35px;
+  top: 160px;
   color: #fff;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 16px;
+  letter-spacing: 1px;
 `;
 
 const CardType = styled.img`
   position: absolute;
-  left: 75%;
-  top: 63%;
+  left: 250px;
+  top: 150px;
 `;
 
 const Visa = () => {

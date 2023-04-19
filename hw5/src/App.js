@@ -6,6 +6,7 @@ import Visa from "./components/Visa";
 import VisaBackSide from "./components/VisaBackSide"
 import MasterCard from "./components/MasterCard"
 import MasterCardBackSide from "./components/MasterCardBackSide"
+import Form from "./components/CreditCard"
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       < VisaBackSide />
       < MasterCard />
       < MasterCardBackSide />
+      < Form />
     </div>
   );
 }

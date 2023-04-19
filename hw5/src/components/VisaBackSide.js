@@ -4,9 +4,10 @@ import visa_cardback from "../assets/visa_cardback.png";
 
 const CardContainer = styled.div`
   position: relative;
-  width: 534px;
-  height: 334px;
-  border-radius: 48px;
+  width: 355px;
+  height: 220px;
+  border-radius: 32px;
+  font-family: "Segoe UI";
 `;
 
 const CardBackground = styled.img`
@@ -15,20 +16,22 @@ const CardBackground = styled.img`
 
 const ExpiryDate = styled.span`
   position: absolute;
-  left: 11%;
-  top: calc(50% - 38px / 2 + 80px);
+  left: 35px;
+  top: 150px;
   color: #fff;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 20px;
+  letter-spacing: 2px;
 `;
 
 const CVVCode = styled.span`
   position: absolute;
-  left: 80%;
-  top: calc(50% - 38px / 2 + 80px);
+  left: 250px;
+  top: 150px;
   color: #fff;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 20px;
+  letter-spacing: 2px;
 `;
 
 const VisaBackSide = () => {
