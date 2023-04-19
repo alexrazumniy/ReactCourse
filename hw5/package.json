@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "babel-plugin-styled-components": "^2.1.1",
     "dart-sass": "^1.25.0",
     "node-sass": "npm:dart-sass@^1.25.0"
   }
