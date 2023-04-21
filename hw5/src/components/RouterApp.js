@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import {
   Routes,
   Route,
-  Link,
-  Outlet,
-  useParams,
   NavLink,
   useNavigate,
 } from "react-router-dom";
@@ -73,14 +70,14 @@ const RouterApp = () => {
         <NavList>
           <StyledNavLink to={"credit_card"}>Credit Card</StyledNavLink>
           <StyledNavLink to={"your_cards"}>Your Cards</StyledNavLink>
-          {/* <GoBackButton />
-          <GoForwardButton /> */}
+          <GoBackButton />
+          {/* <GoForwardButton /> */}
         </NavList>
       </Header>
       <Routes>
         <Route path="*" element={<Form />} />
         <Route path="credit_card" element={<Form />} />
-        {/* <Route path="your_cards" element={<YourCards />} /> */}
+        <Route path="your_cards" element={<YourCards />} />
       </Routes>
     </div>
   );
