@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import visa_cardback from "../assets/visa_cardback.png";
+import visa_back from "../assets/visa_back.png";
 
 const CardContainer = styled.div`
   position: relative;
@@ -40,7 +40,7 @@ const VisaBackSide = () => {
       <CardContainer>
         <ExpiryDate>04/29</ExpiryDate>
         <CVVCode>856</CVVCode>
-        <CardBackground src={visa_cardback} />
+        <CardBackground src={visa_back} />
       </CardContainer>
     </div>
   );

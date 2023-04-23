@@ -1,8 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import chip from "../assets/chip.png";
 import visa_logo from "../assets/visa_logo.png";
-import visa_cardfront from "../assets/visa_cardfront.png";
+import visa_front from "../assets/visa_front.png";
 
 const CardContainer = styled.div`
   position: relative;
@@ -56,7 +55,7 @@ const Visa = () => {
         <Code>1234 5678 9012 3456 </Code>
         <CardOwner>JOAN WILDER</CardOwner>
         <CardType src={visa_logo} />
-        <CardBackground src={visa_cardfront} />
+        <CardBackground src={visa_front} />
       </CardContainer>
     </div>
   );

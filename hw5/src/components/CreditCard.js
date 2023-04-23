@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import FormControl from "@mui/material/FormControl";
-import Visa from "./Visa";
-import MasterCard from "./MasterCard";
+import chip from "../assets/chip.png";
+import visa_logo from "../assets/visa_logo.png";
+import visa_front from "../assets/visa_front.png";
+import { useState } from "react";
 
 const FormWrapper = styled.form`
   margin: 0 auto;
@@ -21,6 +23,52 @@ const FormTitle = styled.div`
   letter-spacing: 2px;
 `;
 
+const CardContainer = styled.div`
+  position: absolute;
+  left: 55px;
+  top: 85px;
+  width: 355px;
+  height: 220px;
+  border-radius: 32px;
+  font-family: "Segoe UI";
+`;
+
+const CardBackground = styled.img`
+  object-fit: cover;
+`;
+
+const Chip = styled.img`
+  position: absolute;
+  left: 35px;
+  top: 40px;
+`;
+
+const Code = styled.span`
+  position: absolute;
+  left: 35px;
+  top: 100px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 3px;
+`;
+
+const CardOwner = styled.span`
+  position: absolute;
+  left: 35px;
+  top: 160px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 1px;
+`;
+
+const CardType = styled.img`
+  position: absolute;
+  left: 250px;
+  top: 150px;
+`;
+
 const InputsContainer = styled.div`
   position: absolute;
   left: 55px;
@@ -30,6 +78,7 @@ const InputsContainer = styled.div`
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 const Label = styled.label`
@@ -48,6 +97,7 @@ const Input = styled.input`
   font-weight: 400;
   font-size: 22px;
   letter-spacing: 1px;
+  margin-bottom: 25px;
 
   &::placeholder {
     color: rgba(0, 0, 0, 0.4);
@@ -55,7 +105,8 @@ const Input = styled.input`
 `;
 
 const ErrorMessage = styled.div`
-  margin: 0 5px 5px;
+  position: absolute;
+  margin: 65px 5px 5px;
   color: red;
 `;
 
@@ -99,47 +150,80 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `;
 
-const CardStyled = styled.div`
-  position: absolute;
-  left: 55px;
-  top: 85px;
-`;
-
 const Form = () => {
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardOwnerName, setCardOwnerName] = useState("");
+  const [cvv, setCvv] = useState("");
+  const [error, setError] = useState("");
+
+  const handleCardNumberChange = (event) => {
+    setCardNumber(
+      event.target.value
+        .split(/(.{4})/)
+        .join(" ")
+        .substr(0, 23)
+    );
+  };
+
+  const handleCardOwnerChange = (event) => {
+    setCardOwnerName(event.target.value);
+  };
+
+  const handleCvvChange = (event) => {
+    setCvv(event.target.value);
+  };
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const formValidate = (cardNumber, cardOwnerName, cvv) => {};
+
   const inputs = [
-    { id: 1, label: "Card number", placeholder: "0555 0666 0777 0888" },
-    { id: 2, label: "CVV", placeholder: "123" },
-    { id: 3, label: "Your fullname", placeholder: "Jonh Snow" },
+    {
+      id: 1,
+      type: "number",
+      label: "Card number",
+      placeholder: "0555 0666 0777 0888",
+      value: { cardNumber },
+      onChange: handleCardNumberChange,
+    },
+    {
+      id: 2,
+      type: "text",
+      label: "Your fullname",
+      placeholder: "Jonh Snow",
+      value: { cardOwnerName },
+      onChange: handleCardOwnerChange,
+    },
+    {
+      id: 3,
+      type: "text",
+      label: "CVV",
+      placeholder: "123",
+      value: { cvv },
+      onChange: handleCvvChange,
+    },
   ];
-
-  // updateCardNumber = (event) => {
-  //   event.preventDefault();
-  //   // document.getElementById('cardNumberDisplay').textContent = value;
-  // }
-
-  // updateCardOwner = (event) => {
-  //   event.preventDefault();
-  //   // document.getElementById('cardHolderDisplay').textContent = value;
-  // }
-
-  // updateExpiry = (event) => {
-  //   event.preventDefault();
-  //   // document.getElementById('expiryDisplay').textContent = value;
-  // }
+  console.log(cardNumber, cardOwnerName, cvv);
 
   return (
     <div>
-      <FormWrapper>
-        <CardStyled>
-          <Visa />
-        </CardStyled>
+      <FormWrapper  onSubmit={onSubmit}>
         <FormTitle>Create a new card</FormTitle>
+        <CardContainer>
+          <Chip src={chip} />
+          <Code>{cardNumber}</Code>
+          <CardOwner>{cardOwnerName}</CardOwner>
+          <CardType src={visa_logo} />
+          <CardBackground src={visa_front} />
+        </CardContainer>
         <InputsContainer>
-          {inputs.map(({ id, label, placeholder }) => (
+          {inputs.map(({ id, label, placeholder, onChange }) => (
             <InputWrapper key={id}>
               <Label>{label}</Label>
-              <Input type="text" placeholder={placeholder} />
-              <ErrorMessage>Value is not valid!</ErrorMessage>
+              <Input placeholder={placeholder} onChange={onChange} />
+              <ErrorMessage>{error}</ErrorMessage>
             </InputWrapper>
           ))}
         </InputsContainer>
@@ -160,10 +244,9 @@ const Form = () => {
           </NativeSelect>
         </FormControl>
 
-        <SubmitButton>Add card</SubmitButton>
+        <SubmitButton type="submit">Add card</SubmitButton>
       </FormWrapper>
     </div>
   );
 };
-
 export default Form;

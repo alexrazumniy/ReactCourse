@@ -6,19 +6,12 @@ import chip from "../assets/chip.png";
 import mastercard_logo from "../assets/mastercard_logo.png";
 import mastercard_front from "../assets/mastercard_front.png";
 
-import Visa from "./Visa";
-import VisaBackSide from "./VisaBackSide";
-import MasterCard from "./MasterCard";
-import MasterCardBackSide from "./MasterCardBackSide";
 import plus_btn from "../assets/plus_btn.png";
 import view_eye from "../assets/view_eye.png";
 import showing_stats from "../assets/showing_stats.png";
 import flip from "../assets/flip.png";
-import line1 from "../assets/Line1.png";
-import line2 from "../assets/Line2.png";
-import linecross from "../assets/LineCross.png";
+import DataProviderFunc from "./useFetch";
 
-import DataProviderFunc from "./DataProvider";
 
 const Header = styled.div`
   display: flex;
@@ -190,7 +183,7 @@ const CardsList = () => {
         <CardWithTabContainer>
           <CardWrapper>
             <Chip src={chip} />
-            <Code>1234 5678 9012 3456 </Code>
+            <Code>1234 5678 9012 3456</Code>
             <CardOwner>JOAN WILDER</CardOwner>
             <CardType src={mastercard_logo} />
             <CardBackground src={mastercard_front} />
@@ -203,8 +196,6 @@ const CardsList = () => {
         <ShowCardStats></ShowCardStats>
         </CardWithTabContainer>
       </Container>
-
-      <DataProviderFunc></DataProviderFunc>
     </div>
   );
 };
