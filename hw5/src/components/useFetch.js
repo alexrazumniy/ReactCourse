@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-const DataProviderFunc = () => {
+// export const useFetch = (url) => {
   const [cardData, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://my.api.mockaroo.com/cards/123.json?key=778301b0")
+    fetch(url)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -17,25 +17,12 @@ const DataProviderFunc = () => {
       .then((json) => setData(json))
       .catch((error) => setError(error.message))
       .finally(() => setLoading(false));
-  }, []);
+  }, [url]);
 
   const { user_name, data } = cardData;
   console.log("cardData:", cardData);
+  console.log("user_name:", user_name);
   console.log("data:", data);
 
-  return (
-    <div>
-      <h2>{user_name}</h2>
-      {/* {data.map((item) => (
-        <div key={item.id}>
-          <h2>ID: {item.id}</h2>
-          <p>Карта: {JSON.stringify(item.card)}</p>
-          <p>Статистика: {JSON.stringify(item.statistic)}</p>
-        </div>
-      ))} */}
-      1111111ggggss;;flluuddd
-    </div>
-  );
-};
-
-export default DataProviderFunc;
+  return { cardData, loading, error};
+// };

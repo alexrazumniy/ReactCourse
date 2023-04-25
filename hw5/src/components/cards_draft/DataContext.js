@@ -1,9 +1,9 @@
-import { useEffect, useState, createContext } from "react";
+import React, { useEffect, useState, createContext } from "react";
 
-export const DataContextFunc = createContext();
+export const CardsDataContext = createContext();
 
-const DataProviderFunc = (props) => {
-  const [data, setData] = useState([]);
+export const DataContextFunc = (props) => {
+  const [cardData, setCardData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -16,21 +16,19 @@ const DataProviderFunc = (props) => {
         }
         throw new Error({ message: "Something went wrong..." });
       })
-      .then((json) => setData(json))
+      .then((json) => setCardData(json))
       .catch((error) => setError(error.message))
       .finally(() => setLoading(false));
-    console.log("Данные с сервера:", data);
   }, []);
 
-  return (
-    <DataContextFunc.Provider value={{ data }}>
-      {props.children}
+  const { user_name, data } = cardData;
+  console.log("cardData:", cardData);
+  console.log("user_name:", data);
+  console.log("data:", data);
 
-      <div>
-        <h1>Cards Data</h1>
-      </div>
-    </DataContextFunc.Provider>
+  return (
+    <CardsDataContext.Provider value={{ cardData, loading, error }}>
+      {props.children}
+    </CardsDataContext.Provider>
   );
 };
-
-export default DataProviderFunc;

@@ -9,7 +9,6 @@ import visa_logo from "../assets/visa_logo.png";
 import chip from "../assets/chip.png";
 
 const CardWrapper = styled.div`
-  // Карточка
   position: relative;
   width: 355px;
   height: 220px;
@@ -23,7 +22,7 @@ const Chip = styled.img`
   top: 40px;
 `;
 
-const Code = styled.span`
+const CardNumber = styled.span`
   position: absolute;
   left: 35px;
   top: 100px;
@@ -77,12 +76,12 @@ const BacksideBackground = styled.img`
   object-fit: cover;
 `;
 
-export const CardFace = ({ user_name, numbers, type }) => {
+export const Card = ({ user_name, numbers, type }) => {
   return (
     <div>
       <CardWrapper>
         <Chip src={chip} />
-        <Code>{numbers}</Code>
+        <CardNumber>{numbers}</CardNumber>
         <CardOwner>{user_name}</CardOwner>
         <CardType
           type={type}

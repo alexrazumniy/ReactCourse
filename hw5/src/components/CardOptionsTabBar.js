@@ -73,7 +73,7 @@ const ShowCardStats = styled.div`
   }
 `;
 
-const OptionsTabBar = () => {
+export const OptionsTabBar = () => {
   return (
     <div>
       <TabBarWrapper>
@@ -85,7 +85,7 @@ const OptionsTabBar = () => {
   );
 };
 
-const CardStatistics = () => {
+export const CardStatistics = () => {
   return (
     <div>
       <ShowCardStats>
