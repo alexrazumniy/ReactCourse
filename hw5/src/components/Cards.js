@@ -1,27 +1,42 @@
+import React, { useContext } from "react";
 import { Card } from "./Card";
-// import { useFetch } from "./useFetch";
-// const CARDS_BASE_URL = "my.api.mockaroo.com/cards/123.json?key=778301b0";
+import { CardsDataContext } from "./DataContext";
 
-export const Cards = () => {
-  // const { cardData: user_name, data, loading, error } = useFetch(CARDS_BASE_URL);
-  // console.log(data, user_name);
+export const CardsList = () => {
+  const { cardData, loading, error } = useContext(CardsDataContext);
+  const { user_name, data } = cardData;
+
+  console.log("user_name:", user_name);
+  console.log("data:", data);
+
   return (
-    <div>
-      {/* {loading && <div>Loading...</div>}
-      {error && !loading && <div>Error: {error}</div>}
+    <>
+      {loading && (
+        <p>
+          <b>Loading...</b>
+        </p>
+      )}
+      {error && !loading && (
+        <p>
+          <b>Error: {error}!</b>
+          <br />
+          Something went wrong...
+        </p>
+      )}
       {!error &&
         !loading &&
-        data?.map((item) => (
+        data?.map(({ id, card, statistic }) => (
           <Card
-            key={item.id}
-            id={item.id}
-            user_name={user_name}
-            numbers={item.numbers}
-            expiry_date={item.expiry_date}
-            cvv={item.cvv}
-            type={item.type}
+            key={id}
+            cardOwner={user_name}
+            cardNumber={card.numbers}
+            cardType={card.type}
+            expiryDate={card.expiry_date}
+            cvvCode={card.cvv}
+            cardStatistic={statistic}
           />
-        ))} */}
-    </div>
+        ))}
+    </>
   );
 };
+

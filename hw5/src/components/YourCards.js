@@ -1,15 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
+import { CardsList } from "./Cards";
 import plus_btn from "../assets/plus_btn.png";
-import view_eye from "../assets/view_eye.png";
-import showing_stats from "../assets/showing_stats.png";
-import flip from "../assets/flip.png";
-
-// import { Cards } from "./Cards";
-import { Card } from "./Card";
-import { CardsLocal } from "./CardsLocal";
 
 const Header = styled.div`
   display: flex;
@@ -41,18 +34,18 @@ const AddCardBtn = styled.img`
 
 const Container = styled.section`
   display: grid;
-  justify-content: start;
-  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
-  align-items: start;
-  gap: 20px;
+  justify-content: space-between;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  align-items: center;
+  row-gap: 65px;
   position: relative;
   max-width: 1800px;
   margin: 0 auto;
-  padding: 25px;
+  padding: 55px 50px 65px;
   box-shadow: 2px 2px 5px 2px #ddd;
 `;
 
-const CardsList = () => {
+const CardsToRender = () => {
   return (
     <div>
       <Header>
@@ -62,17 +55,10 @@ const CardsList = () => {
         </Link>
       </Header>
       <Container>
-          <CardsLocal />
-          {/* <Cards/> */}
-          {/* <TabBarWrapper>
-            <ViewCodeElem src={view_eye} />
-            <ViewStatsElem src={showing_stats} />
-            <FlipCardElem src={flip} />
-          </TabBarWrapper> */}
-          {/* <ShowCardStats>статистика</ShowCardStats> */}
+        <CardsList />
       </Container>
     </div>
   );
 };
 
-export default CardsList;
+export default CardsToRender;

@@ -1,4 +1,6 @@
 import { Card } from "./Card";
+import { ShowCardStats } from "./StatisticsBar";
+import CardsDataContext from "./DataContext"
 
 const cardOwners = [
   {
@@ -1378,30 +1380,120 @@ const cardOwners = [
   },
 ];
 
-export const CardsLocal = () => {
-  console.log("cardOwners:", cardOwners);
+// export const CardsLocal = () => {
+//   console.log("cardOwners:", cardOwners);
 
-  for (const cardOwner of cardOwners) {
-    const { user_name, data } = cardOwner;
-    for (const cardData of data) {
-      const { card } = cardData;
-      const { numbers, type, expiry_date, cvv } = card;
-      console.log(numbers, type, expiry_date, cvv);
-    }
+//   return (
+//     <>
+//       {cardOwners.map((cardOwner) => (
+//         <CardOwner
+//           key={cardOwner.user_id}
+//           user_name={cardOwner.user_name}
+//           data={cardOwner.data}
+//         />
+//       ))}
+//     </>
+//   );
+// };
 
-    return (
-      <>
-        {data?.map((item) => (
-          <Card
-            key={data.id}
-            user_name={user_name}
-            numbers={item.card.numbers}
-            expiry_date={item.card.expiry_date}
-            cvv={item.card.cvv}
-            type={item.card.type}
-          />
-        ))}
-      </>
-    );
-  }
-};
+// const CardOwner = ({ user_name, data }) => {
+//   return (
+//     <>
+//       {data?.map((cardData) => (
+//         <Card
+//           user_name={user_name}
+//           key={cardData.id}
+//           numbers={cardData.card.numbers}
+//           expiry_date={cardData.card.expiry_date}
+//           cvv={cardData.card.cvv}
+//           type={cardData.card.type}
+//           statistic={cardData.statistic}
+//         />
+//       ))}
+//     </>
+//   );
+// };
+
+// const Card11 = () => {
+//   return (
+//     <>
+//         {statistic?.map((statData) => (
+//           <ShowCardStats
+//             key={statData.id}
+//             date={statData.date}
+//             place={statData.place}
+//             expense={statData.expense}
+//             currency={statData.currency}
+//           />
+//         ))}
+//     </>
+//   );
+// };
+
+
+
+// console.log("cardOwner:", cardOwner);
+// console.log("user_id:", user_id);
+// console.log("user_name:", user_name);
+// console.log("data:", data);
+
+// console.log("id:", id);
+// console.log("card:", card);
+// console.log("statistic:", statistic);
+
+// console.log("id:", id);
+// console.log("date:", date);
+// console.log("place:", place);
+// console.log("expense:", expense);
+// console.log("currency:", currency);
+
+// return (
+//   <>
+//     {data?.map((item) => (
+//       <Card
+//         key={item.card.id}
+//         user_name={user_name}
+//         numbers={item.card.numbers}
+//         expiry_date={item.card.expiry_date}
+//         cvv={item.card.cvv}
+//         type={item.card.type}
+//       />
+//     ))}
+//     {statistic?.map((item) => (
+//       <ShowCardStats
+//         key={item.id}
+//         date={item.date}
+//         place={item.place}
+//         expense={item.expense}
+//         currency={item.currency}
+//       />
+//     ))}
+//   </>
+// );
+
+// cardOwners.map(cardOwner => {
+//   const { user_id, user_name, data } = cardOwner;
+
+//   console.log("cardOwner:", cardOwner);
+//   console.log("user_id:", user_id);
+//   console.log("user_name:", user_name);
+//   console.log("data:", data);
+
+//   data.map(cardData => {
+//     const {id, card, statistic} = cardData;
+
+//     console.log("id:", id);
+//     console.log("card:", card);
+//     console.log("statistic:", statistic);
+
+//     statistic.map(statData => {
+//       const {id, date, place, expense, currency} = statData;
+
+//       console.log("id:", id);
+//       console.log("date:", date);
+//       console.log("place:", place);
+//       console.log("expense:", expense);
+//       console.log("currency:", currency);
+//     })
+//   })
+// });

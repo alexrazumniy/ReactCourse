@@ -2,7 +2,7 @@ import React, { useEffect, useState, createContext } from "react";
 
 export const CardsDataContext = createContext();
 
-export const DataContextFunc = (props) => {
+export const DataContext = (props) => {
   const [cardData, setCardData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -21,11 +21,10 @@ export const DataContextFunc = (props) => {
       .finally(() => setLoading(false));
   }, []);
 
-  const { user_name, data } = cardData;
-  console.log("cardData:", cardData);
-  console.log("user_name:", data);
-  console.log("data:", data);
-
+  const addCard = (newCard) => {
+    setCardData(prev => [...prev, newCard])
+  }
+  
   return (
     <CardsDataContext.Provider value={{ cardData, loading, error }}>
       {props.children}
