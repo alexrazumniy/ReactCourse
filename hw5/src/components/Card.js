@@ -3,10 +3,10 @@ import styled from "styled-components";
 import mastercard_front from "../assets/mastercard_front.png";
 import mastercard_back from "../assets/mastercard_back.png";
 import mastercard_logo from "../assets/mastercard_logo.png";
+import chip from "../assets/chip.png";
 import visa_front from "../assets/visa_front.png";
 import visa_back from "../assets/visa_back.png";
 import visa_logo from "../assets/visa_logo.png";
-import chip from "../assets/chip.png";
 
 // import { OptionsBar } from "./OptionsTabBar";
 
@@ -25,15 +25,16 @@ const Sides = styled.div`
   justify-content: center;
   transition: 1s;
   backface-visibility: hidden;
-`;
+  `;
 
 const Front = styled(Sides)`
   transform: ${({ isFlipped }) => (isFlipped ? "rotateY(180deg)" : "none")};
+    transition: transform 0.6s ease-out;
 `;
 
 const Back = styled(Sides)`
-  transform: rotateY(180deg);
-//   transform: ${({ isFlipped }) => (isFlipped ? "rotateY(180deg)" : "none")};
+ transform: ${({ isFlipped }) => (isFlipped ? "rotateY(180deg)" : "none")};
+    transition: transform 0.6s ease-out;
 `;
 
 const CardWrapper = styled.div`
@@ -119,7 +120,7 @@ const TabBarWrapper = styled.div`
   z-index: -1;
   left: 23px;
   top: -185px;
-  width: 310px;
+  width: 330px;
   height: 120px;
   border-radius: 20px;
   background: #ddebff;
@@ -171,19 +172,25 @@ const FlipCardElemBtn = styled.button`
 `;
 
 // Меню статистики
-const Statistics = styled.div`
-  padding: 10px;
-  width: 310px;
-  height: 350px;
-  margin-left: 10px;
-  margin-top: -35px;
+const StatBar = styled.div`
+  padding: 70px 15px 15px;
+  width: 300px;
+  height: 330px;
+  margin-left: 23px;
+  margin-top: -40px;
   border-radius: 20px;
   font-family: "Segoe UI";
   background: #e5efcc;
   overflow: hidden;
 `;
 
-const StatisticItem = styled.div`
+const StatHeader = styled.p`
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 24px;
+`;
+
+const StatItem = styled.div`
   font-size: 16px;
   line-height: 2;
   font-family: "Segoe UI";
@@ -193,18 +200,17 @@ const StatDate = styled.span`
   display: inline-block;
   width: 80px;
   margin-right: 10px;
-  text-align: right;
 `;
 
 const StatPlace = styled.span`
   display: inline-block;
-  width: 85px;
+  width: 80px;
   margin-right: 10px;
 `;
 
 const StatCosts = styled.span`
   display: inline-block;
-  width: 50px;
+  width: 45px;
   margin-right: 10px;
 `;
 
@@ -238,7 +244,8 @@ export const Card = ({
       groups.push(MASK);
       continue;
     }
-    const group = cardNumber.slice(-4);
+    const group = cardNumber.split(/(.{4})/)
+    .join(" ").slice(-4);
     groups.push(group);
 
     const maskedDigits = groups.join(" ");
@@ -289,35 +296,30 @@ export const Card = ({
             />
           </Back>
         )}
+        {showOptions && (
+          <div>
+            <TabBarWrapper style={{ left: "23px", top: "150px" }}>
+              <ViewEyeCrossBtn onClick={handleEyeOpen}>
+                <img
+                  src={eyeOpen ? view_eye_crossed : view_eye}
+                  alt="view_eye_crossed"
+                />
+              </ViewEyeCrossBtn>
+              <ViewStatsElemBtn onClick={handleShowStatistic}>
+                <img src={showing_stats} alt="showing_stats" />
+              </ViewStatsElemBtn>
+              <FlipCardElemBtn onClick={handleFlip}>
+                <img src={flip} alt="flip" />
+              </FlipCardElemBtn>
+            </TabBarWrapper>
+          </div>
+        )}
       </CardWrapper>
-      {showOptions && (
-        <div style={{ position: "relative", top: "117px" }}>
-          <TabBarWrapper>
-            <ViewEyeCrossBtn
-              onClick={() => handleEyeOpen()}
-            >
-              <img
-                src={eyeOpen ? view_eye_crossed : view_eye}
-                alt="view_eye_crossed"
-              />
-            </ViewEyeCrossBtn>
-            <ViewStatsElemBtn
-              onClick={() => handleShowStatistic()}
-            >
-              <img src={showing_stats} alt="showing_stats" />
-            </ViewStatsElemBtn>
-            <FlipCardElemBtn onClick={handleFlip}>
-              <img src={flip} alt="flip" />
-            </FlipCardElemBtn>
-          </TabBarWrapper>
-        </div>
-      )}
       {showStatistic && (
-        <div style={{ left: "60px", top: "230px" }}>
-          <Statistics>
-            <h2>Card Stats</h2>
+          <StatBar onClick={handleShowStatistic}>
+            <StatHeader>Card Stats</StatHeader>
             {cardStatistic.map(({ id, date, place, expense, currency }) => (
-              <StatisticItem
+              <StatItem
                 key={id}
                 purchaseDate={date}
                 purchasePlace={place}
@@ -330,10 +332,9 @@ export const Card = ({
                   <StatCosts>{expense}</StatCosts>
                   <StatCurrency>{currency}</StatCurrency>
                 </div>
-              </StatisticItem>
+              </StatItem>
             ))}
-          </Statistics>
-        </div>
+          </StatBar>
       )}
     </div>
   );

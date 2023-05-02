@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { CardsList } from "./Cards";
 import plus_btn from "../assets/plus_btn.png";
+import Form from "./CreditCard";
 
 const Header = styled.div`
   display: flex;
@@ -36,7 +37,7 @@ const Container = styled.section`
   display: grid;
   justify-content: space-between;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  align-items: center;
+  align-items: start;
   row-gap: 65px;
   position: relative;
   max-width: 1800px;
@@ -45,7 +46,7 @@ const Container = styled.section`
   box-shadow: 2px 2px 5px 2px #ddd;
 `;
 
-const CardsToRender = () => {
+const CardsToRender = (props) => {
   return (
     <div>
       <Header>
