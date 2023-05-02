@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Card } from "./Card";
 import { CardsDataContext } from "./DataContext";
 import Form from "./CreditCard";
@@ -6,11 +6,6 @@ import Form from "./CreditCard";
 export const CardsList = () => {
   const { cardData, loading, error } = useContext(CardsDataContext);
   const { user_name, data } = cardData;
-
-  const [card, setCard] = useState(cardData)
-
-  console.log("user_name:", user_name);
-  console.log("data:", data);
 
   return (
     <>

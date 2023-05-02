@@ -152,111 +152,106 @@ const Form = () => {
   const [error, setError] = useState("");
 
   const handleCardNumberChange = (event) => {
-    if (cardNumber.length !== 16 || typeof cardNumber !== Number) {
-      setError({
-        error: "Card number must contain 16 digits",
-      });
-      // setCardNumber({ cardNumber: "" });
+    setCardNumber(event.target.value);
+  };
+
+  const handleCardOwnerChange = (event) => {
+    setCardOwnerName(event.target.value);
+  };
+
+  const handleCvvChange = (event) => {
+    setCvv(event.target.value);
+  };
+
+  const handleCardTypeChange = (event) => {
+    setCardType(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (
+      cardNumber.length !== 16 ||
+      typeof cardNumber !== Number ||
+      cvv.length !== 3 ||
+      typeof cvv !== Number
+    ) {
+      setError(error);
+      return;
     } else {
       setCardNumber(
         event.target.value
-        // .split(/(.{4})/)
-        // .join(" ")
-        // .slice(-4)
+        .split(/(.{4})/)
+        .join(" ")
+        .slice(-4)
       );
       error = "";
     }
-
-    const handleCardOwnerChange = (event) => {
-      setCardOwnerName(event.target.value);
-    };
-
-    const handleCvvChange = (event) => {
-      if (cvv.length !== 3 || typeof cvv !== Number) {
-        setError({
-          error: "Cvv must contain 3 digits",
-        });
-        // setCvv({ cvv: "" });
-      } else {
-        setCvv(event.target.value);
-        error = "";
-      };
-    };
-
-    const handleCardTypeChange = (event) => {
-      setCardType(event.target.value);
-    };
-
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      console.log(cardNumber, cardOwner, cvv, cardType);
-    };
-
-    return (
-      <div>
-        <FormWrapper handleSubmit={handleSubmit}>
-          <FormTitle>Create a new card</FormTitle>
-          <MyCardWrapper>
-            <Chip src={chip} />
-            <CardNumber>{cardNumber}</CardNumber>
-            <CardOwner>{cardOwner}</CardOwner>
-            <CardType
-              type={cardType}
-              src={cardType === "visa" ? visa_logo : mastercard_logo}
-            />
-            <FaceBackground src={visa_front} />
-          </MyCardWrapper>
-
-          <InputsContainer>
-            <Label>
-              Card number
-              <Input
-                type="text"
-                placeholder="0555 0666 0777 0888"
-                value={cardNumber}
-                required
-                maxLength="16"
-                onChange={handleCardNumberChange}
-                error="Input value is not valid"
-              />
-              <ErrorMessage>{error}</ErrorMessage>
-            </Label>
-            <Label>
-              Your fullname
-              <Input
-                type="text"
-                placeholder="Jonh Snow"
-                value={cardOwner}
-                required
-                onChange={handleCardOwnerChange}
-              />
-            </Label>
-            <Label>
-              CVV
-              <Input
-                type="text"
-                placeholder="123"
-                value={cvv}
-                required
-                maxLength="3"
-                onChange={handleCvvChange}
-                error="Input value is not valid"
-              />
-              <ErrorMessage>{error}</ErrorMessage>
-            </Label>
-            <Label>
-              Visa or Mastercard
-              <Selector defaultValue="Visa" onChange={handleCardTypeChange}>
-                <option value="Visa">Visa</option>
-                <option value="Mastercard">Mastercard</option>                
-              </Selector>
-            </Label>
-          </InputsContainer>
-
-          <SubmitButton type="submit">Add card</SubmitButton>
-        </FormWrapper>
-      </div>
-    );
   };
+  console.log(cardNumber, cardOwner, cvv, cardType);
+
+  return (
+    <div>
+      <FormWrapper handleSubmit={handleSubmit}>
+        <FormTitle>Create a new card</FormTitle>
+        <MyCardWrapper>
+          <Chip src={chip} />
+          <CardNumber>{cardNumber}</CardNumber>
+          <CardOwner>{cardOwner}</CardOwner>
+          <CardType
+            type={cardType}
+            src={cardType === "visa" ? visa_logo : mastercard_logo}
+          />
+          <FaceBackground src={visa_front} />
+        </MyCardWrapper>
+
+        <InputsContainer>
+          <Label>
+            Card number
+            <Input
+              type="text"
+              placeholder="0555 0666 0777 0888"
+              value={cardNumber}
+              required
+              maxLength="16"
+              onChange={handleCardNumberChange}
+              error="Input value is not valid"
+            />
+            <ErrorMessage>{error}</ErrorMessage>
+          </Label>
+          <Label>
+            Your fullname
+            <Input
+              type="text"
+              placeholder="Jonh Snow"
+              value={cardOwner}
+              required
+              onChange={handleCardOwnerChange}
+            />
+          </Label>
+          <Label>
+            CVV
+            <Input
+              type="text"
+              placeholder="123"
+              value={cvv}
+              required
+              maxLength="3"
+              onChange={handleCvvChange}
+              error="Input value is not valid"
+            />
+            <ErrorMessage>{error}</ErrorMessage>
+          </Label>
+          <Label>
+            Visa or Mastercard
+            <Selector defaultValue="Visa" onChange={handleCardTypeChange}>
+              <option value="Visa">Visa</option>
+              <option value="Mastercard">Mastercard</option>
+            </Selector>
+          </Label>
+        </InputsContainer>
+        <SubmitButton type="submit">Add card</SubmitButton>
+      </FormWrapper>
+    </div>
+  );
 };
 export default Form;

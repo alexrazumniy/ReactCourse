@@ -27,13 +27,11 @@ const Sides = styled.div`
   backface-visibility: hidden;
   `;
 
-const Front = styled(Sides)`
-  transform: ${({ isFlipped }) => (isFlipped ? "rotateY(180deg)" : "none")};
+const Front = styled(Sides)`  
     transition: transform 0.6s ease-out;
 `;
 
 const Back = styled(Sides)`
- transform: ${({ isFlipped }) => (isFlipped ? "rotateY(180deg)" : "none")};
     transition: transform 0.6s ease-out;
 `;
 
@@ -114,12 +112,10 @@ const Cvv = styled.span`
 const BacksideBackground = styled.img`
   object-fit: cover;
 `;
-////////
+// Выпадающее меню карты
 const TabBarWrapper = styled.div`
   position: absolute;
-  z-index: -1;
-  left: 23px;
-  top: -185px;
+  z-index: -1;  
   width: 330px;
   height: 120px;
   border-radius: 20px;
@@ -176,7 +172,7 @@ const StatBar = styled.div`
   padding: 70px 15px 15px;
   width: 300px;
   height: 330px;
-  margin-left: 23px;
+  margin-left: 12px;
   margin-top: -40px;
   border-radius: 20px;
   font-family: "Segoe UI";
@@ -298,7 +294,7 @@ export const Card = ({
         )}
         {showOptions && (
           <div>
-            <TabBarWrapper style={{ left: "23px", top: "150px" }}>
+            <TabBarWrapper style={{ left: "12px", top: "150px" }}>
               <ViewEyeCrossBtn onClick={handleEyeOpen}>
                 <img
                   src={eyeOpen ? view_eye_crossed : view_eye}

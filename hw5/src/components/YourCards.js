@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { CardsList } from "./Cards";
 import plus_btn from "../assets/plus_btn.png";
-import Form from "./CreditCard";
 
 const Header = styled.div`
   display: flex;
@@ -46,7 +45,7 @@ const Container = styled.section`
   box-shadow: 2px 2px 5px 2px #ddd;
 `;
 
-const CardsToRender = (props) => {
+const CardsToRender = () => {
   return (
     <div>
       <Header>

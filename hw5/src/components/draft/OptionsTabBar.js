@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import view_eye from "../assets/view_eye.png";
 import view_eye_crossed from "../assets/view_eye_crossed.png";
