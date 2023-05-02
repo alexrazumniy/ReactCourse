@@ -180,9 +180,9 @@ const Form = () => {
     } else {
       setCardNumber(
         event.target.value
-        .split(/(.{4})/)
-        .join(" ")
-        .slice(-4)
+          .split(/(.{4})/)
+          .join(" ")
+          .slice(-4)
       );
       error = "";
     }
