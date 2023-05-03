@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { CardsList } from "./Cards";
@@ -37,13 +36,14 @@ const Container = styled.section`
   justify-content: space-between;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   align-items: start;
-  row-gap: 65px;
+  row-gap: 75px;
   position: relative;
   max-width: 1800px;
   margin: 0 auto;
-  padding: 55px 50px 65px;
+  padding: 25px 50px 65px;
   box-shadow: 2px 2px 5px 2px #ddd;
 `;
+
 
 const CardsToRender = () => {
   return (
@@ -54,7 +54,7 @@ const CardsToRender = () => {
           <AddCardBtn src={plus_btn} />
         </Link>
       </Header>
-      <Container>
+      <Container >
         <CardsList />
       </Container>
     </div>

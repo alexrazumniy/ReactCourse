@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import mastercard_front from "../assets/mastercard_front.png";
 import mastercard_back from "../assets/mastercard_back.png";
@@ -25,14 +25,15 @@ const Sides = styled.div`
   justify-content: center;
   transition: 1s;
   backface-visibility: hidden;
-  `;
+`;
 
-const Front = styled(Sides)`  
-    transition: transform 0.6s ease-out;
+const Front = styled(Sides)`
+  ${(props) => props.isFlipped && `transform: rotateY(180deg)`}
 `;
 
 const Back = styled(Sides)`
-    transition: transform 0.6s ease-out;
+  ${(props) => props.isFlipped && `transform: rotateY(180deg)`}
+  transform: rotateY(180deg);
 `;
 
 const CardWrapper = styled.div`
@@ -42,15 +43,7 @@ const CardWrapper = styled.div`
   border-radius: 32px;
   font-family: "Segoe UI";
   perspective: 1000px;
-  transition: 1s;
-  
-  /* &:hover > ${Front} {
-    transform: rotateY(180deg);
-  }
-
-  &:hover > ${Back} {
-    transform: rotateY(360deg);
-  } */
+  transition: 1s;  
 `;
 
 const Chip = styled.img`
@@ -115,7 +108,7 @@ const BacksideBackground = styled.img`
 // Выпадающее меню карты
 const TabBarWrapper = styled.div`
   position: absolute;
-  z-index: -1;  
+  z-index: -1;
   width: 330px;
   height: 120px;
   border-radius: 20px;
@@ -169,11 +162,11 @@ const FlipCardElemBtn = styled.button`
 
 // Меню статистики
 const StatBar = styled.div`
-  padding: 70px 15px 15px;
+  z-index: -2;
+  padding: 70px 15px 10px;
   width: 300px;
-  height: 330px;
-  margin-left: 12px;
-  margin-top: -40px;
+  height: auto;
+  margin: -40px 0 0 12px;
   border-radius: 20px;
   font-family: "Segoe UI";
   background: #e5efcc;
@@ -233,6 +226,16 @@ export const Card = ({
   const [showStatistic, setShowStatistic] = useState(false);
   const [isFlipped, setFlipped] = useState(false);
 
+  const handleCardNumber = (cardNumber) => {
+    const groups = [];
+    for (let i = 0; i < cardNumber.length; i = i + 4) {
+      groups.push(cardNumber.slice(i, i + 4));
+    }
+    return groups.join(" ");
+  };
+
+  const slicedCardNumber = handleCardNumber(cardNumber);
+
   const maskCardNumber = (cardNumber) => {
     const MASK = "****";
     const groups = [];
@@ -240,8 +243,7 @@ export const Card = ({
       groups.push(MASK);
       continue;
     }
-    const group = cardNumber.split(/(.{4})/)
-    .join(" ").slice(-4);
+    const group = cardNumber.slice(-4);
     groups.push(group);
 
     const maskedDigits = groups.join(" ");
@@ -269,9 +271,9 @@ export const Card = ({
   return (
     <div>
       <CardWrapper>
-        <Front onClick={handleShowOptionsBar}>
+        <Front onClick={handleShowOptionsBar} isFlipped={isFlipped}>
           <Chip src={chip} />
-          <CardNumber>{eyeOpen ? cardNumber : hiddenNumber}</CardNumber>
+          <CardNumber>{eyeOpen ? slicedCardNumber : hiddenNumber}</CardNumber>
           <CardOwner>{cardOwner}</CardOwner>
           <CardType
             type={cardType}
@@ -282,16 +284,16 @@ export const Card = ({
             src={cardType === "visa" ? visa_front : mastercard_front}
           />
         </Front>
-        {isFlipped && (
-          <Back>
-            <ExpiryDate>{expiryDate}</ExpiryDate>
-            <Cvv>{cvvCode}</Cvv>
-            <BacksideBackground
-              type={cardType}
-              src={cardType === "visa" ? visa_back : mastercard_back}
-            />
-          </Back>
-        )}
+        {/* {isFlipped && ( */}
+        <Back isFlipped={isFlipped}>
+          <ExpiryDate>{expiryDate}</ExpiryDate>
+          <Cvv>{cvvCode}</Cvv>
+          <BacksideBackground
+            type={cardType}
+            src={cardType === "visa" ? visa_back : mastercard_back}
+          />
+        </Back>
+        {/* )} */}
         {showOptions && (
           <div>
             <TabBarWrapper style={{ left: "12px", top: "150px" }}>
@@ -312,25 +314,25 @@ export const Card = ({
         )}
       </CardWrapper>
       {showStatistic && (
-          <StatBar onClick={handleShowStatistic}>
-            <StatHeader>Card Stats</StatHeader>
-            {cardStatistic.map(({ id, date, place, expense, currency }) => (
-              <StatItem
-                key={id}
-                purchaseDate={date}
-                purchasePlace={place}
-                purchaseCosts={expense}
-                costCurrency={currency}
-              >
-                <div>
-                  <StatDate>{date}</StatDate>
-                  <StatPlace>{place}</StatPlace>
-                  <StatCosts>{expense}</StatCosts>
-                  <StatCurrency>{currency}</StatCurrency>
-                </div>
-              </StatItem>
-            ))}
-          </StatBar>
+        <StatBar onClick={handleShowStatistic}>
+          <StatHeader>Card Stats</StatHeader>
+          {cardStatistic.map(({ id, date, place, expense, currency }) => (
+            <StatItem
+              key={id}
+              purchaseDate={date}
+              purchasePlace={place}
+              purchaseCosts={expense}
+              costCurrency={currency}
+            >
+              <div>
+                <StatDate>{date}</StatDate>
+                <StatPlace>{place}</StatPlace>
+                <StatCosts>{expense}</StatCosts>
+                <StatCurrency>{currency}</StatCurrency>
+              </div>
+            </StatItem>
+          ))}
+        </StatBar>
       )}
     </div>
   );

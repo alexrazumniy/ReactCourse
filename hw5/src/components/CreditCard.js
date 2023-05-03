@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { CardsDataContext } from "./DataContext";
 import styled from "styled-components";
+// import { useNavigate } from "react-router-dom";
 
 import mastercard_front from "../assets/mastercard_front.png";
 import mastercard_back from "../assets/mastercard_back.png";
 import mastercard_logo from "../assets/mastercard_logo.png";
 import chip from "../assets/chip.png";
 import visa_front from "../assets/visa_front.png";
-import visa_back from "../assets/visa_back.png";
 import visa_logo from "../assets/visa_logo.png";
+import visa_back from "../assets/visa_back.png";
 
 const FormWrapper = styled.form`
   margin: 0 auto;
@@ -80,17 +80,11 @@ const InputsContainer = styled.div`
   top: 320px;
 `;
 
-const InputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-`;
-
 const Label = styled.label`
-  font-size: 18px;
   display: flex;
   flex-direction: column;
   position: relative;
+  font-size: 18px;
 `;
 
 const Input = styled.input`
@@ -145,10 +139,12 @@ const SubmitButton = styled.button`
 `;
 
 const Form = () => {
+  const { addCard } = useContext(CardsDataContext);
+
   const [cardNumber, setCardNumber] = useState("");
   const [cardOwner, setCardOwnerName] = useState("");
   const [cvv, setCvv] = useState("");
-  const [cardType, setCardType] = useState("");
+  const [cardType, setCardType] = useState("Visa");
   const [error, setError] = useState("");
 
   const handleCardNumberChange = (event) => {
@@ -169,6 +165,9 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    console.log("getData:", cardNumber, cardOwner, cvv, cardType);
+
     if (
       cardNumber.length !== 16 ||
       typeof cardNumber !== Number ||
@@ -184,10 +183,10 @@ const Form = () => {
           .join(" ")
           .slice(-4)
       );
-      error = "";
+
+      addCard({cardNumber, cardOwner, cvv, cardType})
     }
   };
-  console.log(cardNumber, cardOwner, cvv, cardType);
 
   return (
     <div>
@@ -243,13 +242,15 @@ const Form = () => {
           </Label>
           <Label>
             Visa or Mastercard
-            <Selector defaultValue="Visa" onChange={handleCardTypeChange}>
+            <Selector onChange={handleCardTypeChange}>
               <option value="Visa">Visa</option>
               <option value="Mastercard">Mastercard</option>
             </Selector>
           </Label>
         </InputsContainer>
-        <SubmitButton type="submit">Add card</SubmitButton>
+        <SubmitButton type="submit" onClick={handleSubmit}>
+          Add card
+        </SubmitButton>
       </FormWrapper>
     </div>
   );

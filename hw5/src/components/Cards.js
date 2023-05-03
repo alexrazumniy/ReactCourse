@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import { useContext, useState } from "react";
 import { Card } from "./Card";
 import { CardsDataContext } from "./DataContext";
-import Form from "./CreditCard";
 
 export const CardsList = () => {
   const { cardData, loading, error } = useContext(CardsDataContext);
@@ -37,4 +36,3 @@ export const CardsList = () => {
     </>
   );
 };
-
