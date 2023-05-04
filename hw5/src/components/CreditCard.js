@@ -1,17 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { CardsDataContext } from "./DataContext";
 import styled from "styled-components";
+// import { Card } from "./Card";
 // import { useNavigate } from "react-router-dom";
 
 import mastercard_front from "../assets/mastercard_front.png";
-import mastercard_back from "../assets/mastercard_back.png";
 import mastercard_logo from "../assets/mastercard_logo.png";
 import chip from "../assets/chip.png";
 import visa_front from "../assets/visa_front.png";
 import visa_logo from "../assets/visa_logo.png";
-import visa_back from "../assets/visa_back.png";
 
-const FormWrapper = styled.form`
+const Container = styled.div`
   margin: 0 auto;
   font-family: "Segoe UI";
   position: relative;
@@ -74,7 +73,7 @@ const CardType = styled.img`
   top: 150px;
 `;
 
-const InputsContainer = styled.div`
+const FormContainer = styled.form`
   position: absolute;
   left: 55px;
   top: 320px;
@@ -126,8 +125,7 @@ const SubmitButton = styled.button`
   position: absolute;
   width: 340px;
   height: 45px;
-  left: 55px;
-  top: 710px;
+  top: 385px;
   background: #aa24e9;
   border-radius: 10px;
   border: none;
@@ -139,12 +137,13 @@ const SubmitButton = styled.button`
 `;
 
 const Form = () => {
-  const { addCard } = useContext(CardsDataContext);
+  const { addMyCard } = useContext(CardsDataContext);
 
   const [cardNumber, setCardNumber] = useState("");
   const [cardOwner, setCardOwnerName] = useState("");
-  const [cvv, setCvv] = useState("");
+  const [cvvCode, setCvvCode] = useState("");
   const [cardType, setCardType] = useState("Visa");
+  const [cardId, setCardId] = useState(0);
   const [error, setError] = useState("");
 
   const handleCardNumberChange = (event) => {
@@ -156,7 +155,7 @@ const Form = () => {
   };
 
   const handleCvvChange = (event) => {
-    setCvv(event.target.value);
+    setCvvCode(event.target.value);
   };
 
   const handleCardTypeChange = (event) => {
@@ -166,31 +165,19 @@ const Form = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log("getData:", cardNumber, cardOwner, cvv, cardType);
+    const myCard = [
+      { user_name: cardOwner },
+      { id: cardId,
+        card: { numbers: cardNumber, type: cardType, cvv: cvvCode },
+      },
+    ];
 
-    if (
-      cardNumber.length !== 16 ||
-      typeof cardNumber !== Number ||
-      cvv.length !== 3 ||
-      typeof cvv !== Number
-    ) {
-      setError(error);
-      return;
-    } else {
-      setCardNumber(
-        event.target.value
-          .split(/(.{4})/)
-          .join(" ")
-          .slice(-4)
-      );
-
-      addCard({cardNumber, cardOwner, cvv, cardType})
-    }
+    addMyCard(myCard);
   };
 
   return (
     <div>
-      <FormWrapper handleSubmit={handleSubmit}>
+      <Container>
         <FormTitle>Create a new card</FormTitle>
         <MyCardWrapper>
           <Chip src={chip} />
@@ -200,10 +187,11 @@ const Form = () => {
             type={cardType}
             src={cardType === "visa" ? visa_logo : mastercard_logo}
           />
-          <FaceBackground src={visa_front} />
+          <FaceBackground
+            src={cardType === "visa" ? visa_front : mastercard_front}
+          />
         </MyCardWrapper>
-
-        <InputsContainer>
+        <FormContainer onSubmit={handleSubmit}>
           <Label>
             Card number
             <Input
@@ -232,7 +220,7 @@ const Form = () => {
             <Input
               type="text"
               placeholder="123"
-              value={cvv}
+              value={cvvCode}
               required
               maxLength="3"
               onChange={handleCvvChange}
@@ -247,11 +235,9 @@ const Form = () => {
               <option value="Mastercard">Mastercard</option>
             </Selector>
           </Label>
-        </InputsContainer>
-        <SubmitButton type="submit" onClick={handleSubmit}>
-          Add card
-        </SubmitButton>
-      </FormWrapper>
+          <SubmitButton type="submit">Add card</SubmitButton>
+        </FormContainer>
+      </Container>
     </div>
   );
 };

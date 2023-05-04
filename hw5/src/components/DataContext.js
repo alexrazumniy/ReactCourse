@@ -6,7 +6,7 @@ export const DataContext = (props) => {
   const [cardData, setCardData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  // const [newCard, setNewCard] = useState(null);
+  const [myCardData, setMyCardData] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -22,15 +22,17 @@ export const DataContext = (props) => {
       .finally(() => setLoading(false));
   }, []);
 
-  console.log(cardData);
+  const { user_name, data } = cardData;
+  console.log("user_name", user_name);
+  console.log("data", data);
 
-  const addCard = (card) => {
-    setCardData((prev) => [...prev, card]);
-    console.log(card);
+  const addMyCard = (myCard) => {
+    setCardData((prev) => [...prev, myCard]);
+    console.log(myCard);
   };
 
   return (
-    <CardsDataContext.Provider value={{ cardData, loading, error, addCard }}>
+    <CardsDataContext.Provider value={{ cardData, loading, error, addMyCard }}>
       {props.children}
     </CardsDataContext.Provider>
   );

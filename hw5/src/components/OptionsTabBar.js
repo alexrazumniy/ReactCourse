@@ -6,14 +6,14 @@ import flip from "../assets/flip.png";
 
 const TabBarWrapper = styled.div`
   position: absolute;
+  left: 12px;
+  top: 150px;
   z-index: -1;
-  left: 23px;
-  top: -185px;
-  width: 310px;
+  width: 330px;
   height: 120px;
   border-radius: 20px;
   background: #ddebff;
-  transition: 2s;
+  transition: 0.5s;
 
   ::before {
     position: absolute;
@@ -36,18 +36,10 @@ const TabBarWrapper = styled.div`
   }
 `;
 
-const ViewEyeCrossBtn = styled.button`
+const ViewEye = styled.button`
   position: absolute;
   top: 75px;
   left: 47px;
-  background: transparent;
-  border: none;
-`;
-
-const ViewCodeElemBtn = styled.button`
-  position: absolute;
-  top: 75px;
-  left: 50px;
   background: transparent;
   border: none;
 `;
@@ -70,19 +62,19 @@ const FlipCardElemBtn = styled.button`
 
 export const OptionsBar = ({
   handleEyeOpen,
-  handleShowNumber,
   handleShowStatistic,
   handleFlip,
+  eyeOpen
 }) => {
   return (
     <div>
       <TabBarWrapper>
-        <ViewEyeCrossBtn onClick={handleEyeOpen}>
-          <img src={view_eye_crossed} alt="view_eye_cross" />
-        </ViewEyeCrossBtn>
-        <ViewCodeElemBtn onClick={handleShowNumber}>
-          <img src={view_eye} alt="view_eye" />
-        </ViewCodeElemBtn>
+        <ViewEye onClick={handleEyeOpen}>
+          <img
+            src={eyeOpen ? view_eye : view_eye_crossed }
+            alt="view_eye_crossed"
+          />
+        </ViewEye>
         <ViewStatsElemBtn onClick={handleShowStatistic}>
           <img src={showing_stats} alt="showing_stats" />
         </ViewStatsElemBtn>

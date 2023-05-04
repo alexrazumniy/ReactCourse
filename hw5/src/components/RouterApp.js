@@ -9,7 +9,6 @@ import YourCards from "./YourCards";
 import Form from "./CreditCard";
 
 import backBtn from "../assets/arrow-left.png";
-import forwardBtn from "../assets/arrow-right.png";
 
 const GoBackButton = () => {
   const navigate = useNavigate();
@@ -19,18 +18,6 @@ const GoBackButton = () => {
   return (
     <button className="back-btn" onClick={handleStep}>
       {<img src={backBtn} alt="back" />}
-    </button>
-  );
-};
-
-const GoForwardButton = () => {
-  const navigate = useNavigate();
-  const handleStep = () => {
-    navigate(+1);
-  };
-  return (
-    <button className="forward-btn" onClick={handleStep}>
-      {<img src={forwardBtn} alt="forward" />}
     </button>
   );
 };
@@ -70,7 +57,6 @@ const RouterApp = () => {
           <StyledNavLink to={"credit_card"}>Credit Card</StyledNavLink>
           <StyledNavLink to={"your_cards"}>Your Cards</StyledNavLink>
           <GoBackButton />
-          {/* <GoForwardButton /> */}
         </NavList>
       </Header>
       <Routes>

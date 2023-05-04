@@ -7,13 +7,7 @@ import chip from "../assets/chip.png";
 import visa_front from "../assets/visa_front.png";
 import visa_back from "../assets/visa_back.png";
 import visa_logo from "../assets/visa_logo.png";
-
-// import { OptionsBar } from "./OptionsTabBar";
-
-import view_eye from "../assets/view_eye.png";
-import view_eye_crossed from "../assets/view_eye_crossed.png";
-import showing_stats from "../assets/showing_stats.png";
-import flip from "../assets/flip.png";
+import { OptionsBar } from "./OptionsTabBar";
 
 const Sides = styled.div`
   position: absolute;
@@ -43,7 +37,7 @@ const CardWrapper = styled.div`
   border-radius: 32px;
   font-family: "Segoe UI";
   perspective: 1000px;
-  transition: 1s;  
+  transition: 1s;
 `;
 
 const Chip = styled.img`
@@ -105,59 +99,9 @@ const Cvv = styled.span`
 const BacksideBackground = styled.img`
   object-fit: cover;
 `;
-// Выпадающее меню карты
-const TabBarWrapper = styled.div`
-  position: absolute;
-  z-index: -1;
-  width: 330px;
-  height: 120px;
-  border-radius: 20px;
-  background: #ddebff;
-  transition: 2s;
 
-  ::before {
-    position: absolute;
-    content: "";
-    top: 72px;
-    left: 110px;
-    width: 2px;
-    height: 35px;
-    background-color: #111;
-  }
-
-  ::after {
-    position: absolute;
-    content: "";
-    top: 72px;
-    left: 200px;
-    width: 2px;
-    height: 35px;
-    background-color: #111;
-  }
-`;
-
-const ViewEyeCrossBtn = styled.button`
-  position: absolute;
-  top: 78px;
-  left: 47px;
-  background: transparent;
-  border: none;
-`;
-
-const ViewStatsElemBtn = styled.button`
-  position: absolute;
-  top: 75px;
-  left: 134px;
-  background: transparent;
-  border: none;
-`;
-
-const FlipCardElemBtn = styled.button`
-  position: absolute;
-  top: 75px;
-  right: 50px;
-  background: transparent;
-  border: none;
+const OptionsBarShown = styled(OptionsBar)`
+  ${(props) => props.showOptions && `transform: translateX(50px)`}
 `;
 
 // Меню статистики
@@ -215,11 +159,7 @@ export const Card = ({
   cardType,
   expiryDate,
   cvvCode,
-  cardStatistic,
-  purchaseDate,
-  purchasePlace,
-  purchaseCosts,
-  costCurrency,
+  cardStatistic  
 }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [eyeOpen, setEyeOpen] = useState(false);
@@ -284,7 +224,6 @@ export const Card = ({
             src={cardType === "visa" ? visa_front : mastercard_front}
           />
         </Front>
-        {/* {isFlipped && ( */}
         <Back isFlipped={isFlipped}>
           <ExpiryDate>{expiryDate}</ExpiryDate>
           <Cvv>{cvvCode}</Cvv>
@@ -293,24 +232,14 @@ export const Card = ({
             src={cardType === "visa" ? visa_back : mastercard_back}
           />
         </Back>
-        {/* )} */}
         {showOptions && (
-          <div>
-            <TabBarWrapper style={{ left: "12px", top: "150px" }}>
-              <ViewEyeCrossBtn onClick={handleEyeOpen}>
-                <img
-                  src={eyeOpen ? view_eye_crossed : view_eye}
-                  alt="view_eye_crossed"
-                />
-              </ViewEyeCrossBtn>
-              <ViewStatsElemBtn onClick={handleShowStatistic}>
-                <img src={showing_stats} alt="showing_stats" />
-              </ViewStatsElemBtn>
-              <FlipCardElemBtn onClick={handleFlip}>
-                <img src={flip} alt="flip" />
-              </FlipCardElemBtn>
-            </TabBarWrapper>
-          </div>
+          <OptionsBarShown
+            showOptions={showOptions}
+            handleEyeOpen={handleEyeOpen}
+            handleShowStatistic={handleShowStatistic}
+            handleFlip={handleFlip}
+            eyeOpen={!eyeOpen}
+          />
         )}
       </CardWrapper>
       {showStatistic && (
