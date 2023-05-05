@@ -1,9 +1,7 @@
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { CardsDataContext } from "./DataContext";
 import styled from "styled-components";
-// import { Card } from "./Card";
-// import { useNavigate } from "react-router-dom";
-
 import mastercard_front from "../assets/mastercard_front.png";
 import mastercard_logo from "../assets/mastercard_logo.png";
 import chip from "../assets/chip.png";
@@ -118,7 +116,7 @@ const ErrorMessage = styled.div`
   position: absolute;
   margin: 65px 5px 5px;
   color: red;
-  font-size: 16px;
+  font-size: 14px;
 `;
 
 const SubmitButton = styled.button`
@@ -146,16 +144,53 @@ const Form = () => {
   const [cardId, setCardId] = useState(0);
   const [error, setError] = useState("");
 
+  const navigate = useNavigate();
+
+  const formatCardNumber = (inputValue) => {
+    const maxLength = 19;
+    const onlyNums = inputValue.replace(/[^\d]/g, "");
+    const formattedValue = [];
+
+    for (let i = 0; i < onlyNums.length && i < maxLength; i += 4) {
+      formattedValue.push(onlyNums.slice(i, i + 4));
+    }
+
+    return formattedValue.join(" ");
+  };
+
   const handleCardNumberChange = (event) => {
-    setCardNumber(event.target.value);
+    const formattedValue = formatCardNumber(event.target.value);
+    setCardNumber(formattedValue);
   };
 
   const handleCardOwnerChange = (event) => {
-    setCardOwnerName(event.target.value);
+    const firstCapNameLetters = event.target.value
+      .split(" ")
+      .map((name) => {
+        const firstLetters = name.charAt(0).toUpperCase();
+        const restLetters = name.slice(1).toLowerCase();
+        return firstLetters + restLetters;
+      })
+      .join(" ");
+
+    setCardOwnerName(firstCapNameLetters);
   };
 
-  const handleCvvChange = (event) => {
-    setCvvCode(event.target.value);
+  const formatCvvCode = (inputValue) => {
+    const maxLength = 19;
+    const onlyNums = inputValue.replace(/[^\d]/g, "");
+    const formattedValue = [];
+
+    for (let i = 0; i < onlyNums.length && i < maxLength; i += 4) {
+      formattedValue.push(onlyNums.slice(i, i + 4));
+    }
+
+    return formattedValue.join(" ");
+  };
+
+  const handleCvvCodeChange = (event) => {
+    const formattedValue = formatCvvCode(event.target.value);
+    setCvvCode(formattedValue);
   };
 
   const handleCardTypeChange = (event) => {
@@ -166,18 +201,19 @@ const Form = () => {
     event.preventDefault();
 
     const myCard = {
-      user_id: 1,
       user_name: cardOwner,
       data: [
         {
           id: cardId,
           card: { numbers: cardNumber, type: cardType, cvv: cvvCode },
+          statistic: [],
         },
       ],
-      id: 123,
     };
 
     addMyCard(myCard);
+
+    navigate("/your_cards");
   };
 
   return (
@@ -204,9 +240,8 @@ const Form = () => {
               placeholder="0555 0666 0777 0888"
               value={cardNumber}
               required
-              maxLength="16"
+              maxLength="19"
               onChange={handleCardNumberChange}
-              error="Input value is not valid"
             />
             <ErrorMessage>{error}</ErrorMessage>
           </Label>
@@ -228,8 +263,7 @@ const Form = () => {
               value={cvvCode}
               required
               maxLength="3"
-              onChange={handleCvvChange}
-              error="Input value is not valid"
+              onChange={handleCvvCodeChange}
             />
             <ErrorMessage>{error}</ErrorMessage>
           </Label>

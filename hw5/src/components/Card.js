@@ -104,7 +104,6 @@ const OptionsBarShown = styled(OptionsBar)`
   ${(props) => props.showOptions && `transform: translateX(50px)`}
 `;
 
-// Меню статистики
 const StatBar = styled.div`
   z-index: -2;
   padding: 70px 15px 10px;

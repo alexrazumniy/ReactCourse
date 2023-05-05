@@ -4,7 +4,6 @@ import { CardsDataContext } from "./DataContext";
 
 export const CardsList = () => {
   const { cardData, loading, error } = useContext(CardsDataContext);
-  const { user_name, data } = cardData;
 
   return (
     <>
@@ -22,17 +21,19 @@ export const CardsList = () => {
       )}
       {!error &&
         !loading &&
-        data?.map(({ id, card, statistic }) => (
-          <Card
-            key={id}
-            cardOwner={user_name}
-            cardNumber={card.numbers}
-            cardType={card.type}
-            expiryDate={card.expiry_date}
-            cvvCode={card.cvv}
-            cardStatistic={statistic}
-          />
-        ))}
+        cardData.map(({ user_name, data }) => {
+          return data?.map(({ id, card, statistic }) => (
+            <Card
+              key={id}
+              cardOwner={user_name}
+              cardNumber={card.numbers}
+              cardType={card.type}
+              expiryDate={card.expiry_date}
+              cvvCode={card.cvv}
+              cardStatistic={statistic}
+            />
+          ));
+        })}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, createContext } from "react";
+import { useEffect, useState, createContext } from "react";
 
 export const CardsDataContext = createContext();
 
@@ -20,11 +20,6 @@ export const DataContext = (props) => {
       .catch((error) => setError(error.message))
       .finally(() => setLoading(false));
   }, []);
-
-  console.log("cardData", cardData);
-
-  const dataArray = Object.values(cardData);
-  console.log("dataArray", dataArray);
 
   const addMyCard = (myCard) => {
     setCardData((prev) => [myCard, ...prev]);
