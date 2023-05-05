@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState, useCallback, createContext } from "react";
 
 export const CardsDataContext = createContext();
 
@@ -6,7 +6,6 @@ export const DataContext = (props) => {
   const [cardData, setCardData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [myCardData, setMyCardData] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -17,17 +16,18 @@ export const DataContext = (props) => {
         }
         throw new Error({ message: "Something went wrong..." });
       })
-      .then((json) => setCardData(json))
+      .then((json) => setCardData([json]))
       .catch((error) => setError(error.message))
       .finally(() => setLoading(false));
   }, []);
 
-  const { user_name, data } = cardData;
-  console.log("user_name", user_name);
-  console.log("data", data);
+  console.log("cardData", cardData);
+
+  const dataArray = Object.values(cardData);
+  console.log("dataArray", dataArray);
 
   const addMyCard = (myCard) => {
-    setCardData((prev) => [...prev, myCard]);
+    setCardData((prev) => [myCard, ...prev]);
     console.log(myCard);
   };
 

@@ -165,12 +165,17 @@ const Form = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const myCard = [
-      { user_name: cardOwner },
-      { id: cardId,
-        card: { numbers: cardNumber, type: cardType, cvv: cvvCode },
-      },
-    ];
+    const myCard = {
+      user_id: 1,
+      user_name: cardOwner,
+      data: [
+        {
+          id: cardId,
+          card: { numbers: cardNumber, type: cardType, cvv: cvvCode },
+        },
+      ],
+      id: 123,
+    };
 
     addMyCard(myCard);
   };
