@@ -1,9 +1,4 @@
-import {
-  Routes,
-  Route,
-  NavLink,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 import YourCards from "./YourCards";
 import Form from "./CreditCard";
@@ -16,7 +11,7 @@ const GoBackButton = () => {
     navigate(-1);
   };
   return (
-    <button className="back-btn" onClick={handleStep}>
+    <button style={{ backgroundColor: "transparent", border: "none" }} onClick={handleStep}>
       {<img src={backBtn} alt="back" />}
     </button>
   );
@@ -44,9 +39,11 @@ const StyledNavLink = styled(NavLink)`
   list-style: none;
   text-decoration: none;
 
-  ${props => props.isActive && css`
-    background: #9AFE2E;
-  `}  
+  ${(props) =>
+    props.isActive &&
+    css`
+      background: #9afe2e;
+    `}
 `;
 
 const RouterApp = () => {

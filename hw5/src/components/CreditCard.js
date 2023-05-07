@@ -35,10 +35,6 @@ const MyCardWrapper = styled.div`
   font-family: "Segoe UI";
 `;
 
-const FaceBackground = styled.img`
-  object-fit: cover;
-`;
-
 const Chip = styled.img`
   position: absolute;
   left: 35px;
@@ -69,6 +65,10 @@ const CardType = styled.img`
   position: absolute;
   left: 250px;
   top: 150px;
+`;
+
+const FaceBackground = styled.img`
+  object-fit: cover;
 `;
 
 const FormContainer = styled.form`
@@ -136,31 +136,31 @@ const SubmitButton = styled.button`
 
 const Form = () => {
   const { addMyCard } = useContext(CardsDataContext);
-
   const [cardNumber, setCardNumber] = useState("");
   const [cardOwner, setCardOwnerName] = useState("");
   const [cvvCode, setCvvCode] = useState("");
   const [cardType, setCardType] = useState("Visa");
   const [cardId, setCardId] = useState(0);
-  const [error, setError] = useState("");
+  const [cardNumberError, setCardNumberError] = useState("");
+  const [cvvCodeError, setCvvCodeError] = useState("");
 
   const navigate = useNavigate();
 
   const formatCardNumber = (inputValue) => {
-    const maxLength = 19;
+    const maxLength = 16;
     const onlyNums = inputValue.replace(/[^\d]/g, "");
-    const formattedValue = [];
+    const formattedCardNumber = [];
 
-    for (let i = 0; i < onlyNums.length && i < maxLength; i += 4) {
-      formattedValue.push(onlyNums.slice(i, i + 4));
+    for (let i = 0; i < maxLength; i += 4) {
+      formattedCardNumber.push(onlyNums.slice(i, i + 4));
     }
-
-    return formattedValue.join(" ");
+    return formattedCardNumber.join(" ");
   };
 
   const handleCardNumberChange = (event) => {
     const formattedValue = formatCardNumber(event.target.value);
     setCardNumber(formattedValue);
+    return formattedValue;
   };
 
   const handleCardOwnerChange = (event) => {
@@ -177,15 +177,14 @@ const Form = () => {
   };
 
   const formatCvvCode = (inputValue) => {
-    const maxLength = 19;
+    const maxLength = 3;
     const onlyNums = inputValue.replace(/[^\d]/g, "");
-    const formattedValue = [];
+    const formattedCvvCode = [];
 
-    for (let i = 0; i < onlyNums.length && i < maxLength; i += 4) {
-      formattedValue.push(onlyNums.slice(i, i + 4));
+    for (let i = 0; i < maxLength; i += 1) {
+      formattedCvvCode.push(onlyNums.slice(i, i + 1));
     }
-
-    return formattedValue.join(" ");
+    return formattedCvvCode.join("");
   };
 
   const handleCvvCodeChange = (event) => {
@@ -197,23 +196,52 @@ const Form = () => {
     setCardType(event.target.value);
   };
 
+  const validateCardNumber = (cardNumber) => {
+    if (cardNumber.length < 16) {
+      setCardNumberError("Card code must contain 16 digits at least");
+    } else {
+      setCardNumberError("");
+      return cardNumber;
+    }
+  };
+
+  const validateCvvCode = (cvvCode) => {
+    if (cvvCode.length < 3) {
+      setCvvCodeError("CVV code must contain 3 digits at least");
+    } else {
+      setCvvCodeError("");
+      return cvvCode;
+    }
+  };
+
+  const validateInputData = (cardNumber, cvvCode) => {
+    const validatedCardNumber = validateCardNumber(cardNumber);
+    const validatedCvvCode = validateCvvCode(cvvCode);
+
+    return validatedCardNumber && validatedCvvCode ? true : false;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const myCard = {
-      user_name: cardOwner,
-      data: [
-        {
-          id: cardId,
-          card: { numbers: cardNumber, type: cardType, cvv: cvvCode },
-          statistic: [],
-        },
-      ],
-    };
+    const isDataValid = validateInputData(cardNumber, cvvCode);
 
-    addMyCard(myCard);
+    if (isDataValid) {
+      const myCard = {
+        user_name: cardOwner,
+        data: [
+          {
+            id: cardId,
+            card: { numbers: cardNumber, type: cardType, cvv: cvvCode, expiry_date: "01/01/2025" },
+            statistic: [],
+          },
+        ],
+      };
 
-    navigate("/your_cards");
+      addMyCard(myCard);
+
+      navigate("/your_cards");
+    }
   };
 
   return (
@@ -226,10 +254,11 @@ const Form = () => {
           <CardOwner>{cardOwner}</CardOwner>
           <CardType
             type={cardType}
-            src={cardType === "visa" ? visa_logo : mastercard_logo}
+            src={cardType === "Visa" ? visa_logo : mastercard_logo}
           />
           <FaceBackground
-            src={cardType === "visa" ? visa_front : mastercard_front}
+            type={cardType}
+            src={cardType === "Visa" ? visa_front : mastercard_front}
           />
         </MyCardWrapper>
         <FormContainer onSubmit={handleSubmit}>
@@ -243,7 +272,7 @@ const Form = () => {
               maxLength="19"
               onChange={handleCardNumberChange}
             />
-            <ErrorMessage>{error}</ErrorMessage>
+            <ErrorMessage>{cardNumberError}</ErrorMessage>
           </Label>
           <Label>
             Your fullname
@@ -265,11 +294,11 @@ const Form = () => {
               maxLength="3"
               onChange={handleCvvCodeChange}
             />
-            <ErrorMessage>{error}</ErrorMessage>
+            <ErrorMessage>{cvvCodeError}</ErrorMessage>
           </Label>
           <Label>
             Visa or Mastercard
-            <Selector onChange={handleCardTypeChange}>
+            <Selector value={cardType} onChange={handleCardTypeChange}>
               <option value="Visa">Visa</option>
               <option value="Mastercard">Mastercard</option>
             </Selector>

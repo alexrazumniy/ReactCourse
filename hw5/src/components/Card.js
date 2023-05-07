@@ -36,8 +36,7 @@ const CardWrapper = styled.div`
   height: 220px;
   border-radius: 32px;
   font-family: "Segoe UI";
-  perspective: 1000px;
-  transition: 1s;
+  z-index: 0;
 `;
 
 const Chip = styled.img`
@@ -105,15 +104,16 @@ const OptionsBarShown = styled(OptionsBar)`
 `;
 
 const StatBar = styled.div`
-  z-index: -2;
   padding: 70px 15px 10px;
   width: 300px;
   height: auto;
-  margin: -40px 0 0 12px;
-  border-radius: 20px;
+  margin-left: 12px;
+  border-radius: 15px;
   font-family: "Segoe UI";
   background: #e5efcc;
   overflow: hidden;
+  transition: 0.3s ease-in-out;
+  margin-top: ${(props) => (props.showStatistic ? "-40px" : "0")};
 `;
 
 const StatHeader = styled.p`
@@ -158,7 +158,7 @@ export const Card = ({
   cardType,
   expiryDate,
   cvvCode,
-  cardStatistic  
+  cardStatistic,
 }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [eyeOpen, setEyeOpen] = useState(false);
@@ -170,10 +170,10 @@ export const Card = ({
     for (let i = 0; i < cardNumber.length; i = i + 4) {
       groups.push(cardNumber.slice(i, i + 4));
     }
-    return groups.join(" ");
+    return groups.join("");
   };
-
   const slicedCardNumber = handleCardNumber(cardNumber);
+  console.log(slicedCardNumber);
 
   const maskCardNumber = (cardNumber) => {
     const MASK = "****";
@@ -186,6 +186,7 @@ export const Card = ({
     groups.push(group);
 
     const maskedDigits = groups.join(" ");
+    console.log(maskedDigits);
     return maskedDigits;
   };
 
@@ -216,11 +217,11 @@ export const Card = ({
           <CardOwner>{cardOwner}</CardOwner>
           <CardType
             type={cardType}
-            src={cardType === "visa" ? visa_logo : mastercard_logo}
+            src={cardType === "Visa" ? visa_logo : mastercard_logo}
           />
           <FaceBackground
             type={cardType}
-            src={cardType === "visa" ? visa_front : mastercard_front}
+            src={cardType === "Visa" ? visa_front : mastercard_front}
           />
         </Front>
         <Back isFlipped={isFlipped}>
@@ -228,7 +229,7 @@ export const Card = ({
           <Cvv>{cvvCode}</Cvv>
           <BacksideBackground
             type={cardType}
-            src={cardType === "visa" ? visa_back : mastercard_back}
+            src={cardType === "Visa" ? visa_back : mastercard_back}
           />
         </Back>
         {showOptions && (
@@ -242,7 +243,7 @@ export const Card = ({
         )}
       </CardWrapper>
       {showStatistic && (
-        <StatBar onClick={handleShowStatistic}>
+        <StatBar onClick={handleShowStatistic} showStatistic={showStatistic}>
           <StatHeader>Card Stats</StatHeader>
           {cardStatistic.map(({ id, date, place, expense, currency }) => (
             <StatItem

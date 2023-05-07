@@ -7,13 +7,13 @@ import flip from "../assets/flip.png";
 const TabBarWrapper = styled.div`
   position: absolute;
   left: 12px;
-  top: 150px;
   z-index: -1;
   width: 330px;
   height: 120px;
   border-radius: 20px;
   background: #ddebff;
-  transition: 0.5s;
+  transition: 1s;
+  top: ${props => props.showOptions ? '100px' : '150px'};
 
   ::before {
     position: absolute;

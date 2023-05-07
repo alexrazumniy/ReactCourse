@@ -23,7 +23,6 @@ export const DataContext = (props) => {
 
   const addMyCard = (myCard) => {
     setCardData((prev) => [myCard, ...prev]);
-    console.log(myCard);
   };
 
   return (
