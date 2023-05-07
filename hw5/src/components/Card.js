@@ -173,7 +173,6 @@ export const Card = ({
     return groups.join("");
   };
   const slicedCardNumber = handleCardNumber(cardNumber);
-  console.log(slicedCardNumber);
 
   const maskCardNumber = (cardNumber) => {
     const MASK = "****";
@@ -186,7 +185,6 @@ export const Card = ({
     groups.push(group);
 
     const maskedDigits = groups.join(" ");
-    console.log(maskedDigits);
     return maskedDigits;
   };
 
