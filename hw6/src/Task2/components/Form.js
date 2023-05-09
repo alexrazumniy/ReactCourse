@@ -1,8 +1,12 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useState } from "react";
+
+import { createFilm } from "../redux/actions";
 
 const Form = () => {
-  const { handleSubmit, handleChange, values, errors } = useFormik({
+  const [films, setFilms] = useState([]);
+  const { handleSubmit, handleChange, values, errors, resetForm } = useFormik({
     initialValues: {
       film: "",
     },
@@ -12,9 +16,11 @@ const Form = () => {
     }),
 
     onSubmit: ({ film }) => {
+      const newFilm = { film, id: Date.now().toString() };
+      createFilm(newFilm);
+      console.log(newFilm);
 
-      const newTitle = {film, id: Date.now().toString()}
-      console.log(newTitle);
+      resetForm();
     },
   });
 
@@ -27,7 +33,8 @@ const Form = () => {
         name="film"
         placeholder="Введите название фильма"
         value={values.film}
-        onChange={handleChange}        
+        onChange={handleChange}
+        createFilm={createFilm}
       />
       {errors.film ? <p className="errormsg">{errors.film}</p> : null}
 

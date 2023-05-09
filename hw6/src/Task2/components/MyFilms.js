@@ -1,9 +1,12 @@
+import { connect } from "react-redux";
 import Film from "./Film";
 
-const MyFilms = ({ films }) => {
+const MyFilms = ({films}) => {
   if (!films.length) {
     return <div>Фильмов пока что нет :(</div>;
   }
+
+  console.log(films);
 
   return (
     <div>
@@ -14,4 +17,10 @@ const MyFilms = ({ films }) => {
   );
 };
 
-export default MyFilms;
+const mapStateToProps = (state) => {
+  return {
+    films: state.films.films,
+  };
+};
+
+export default connect(mapStateToProps, null)(MyFilms);

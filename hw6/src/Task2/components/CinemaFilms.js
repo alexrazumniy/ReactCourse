@@ -7,7 +7,7 @@ const CinemaFilms = ({ films }) => {
   return (
     <div>
       {films.map((film) => (
-        <Film key={film.id} film={film} />
+        <Film key={film} film={film} />
       ))}
     </div>
   );
