@@ -4,11 +4,11 @@ import CinemaFilms from "./components/CinemaFilms";
 import { useState } from "react";
 
 const Task2 = () => {
-  const [films, setFilms] = useState([1, 2, 3]);
+  const [films, setFilms] = useState([]);
 
   const addNewFilm = (film) => {
-    setFilms([...films, film])
-  }
+    setFilms([...films, film]);
+  };
 
   return (
     <div>
@@ -16,7 +16,7 @@ const Task2 = () => {
         <h2>TASK #2 Working with Redux</h2>
         <h3 className="themetitle">Что я хочу посмотреть?</h3>
         <div className="row">
-          <Form addNewFilm={addNewFilm}/>
+          <Form addNewFilm={addNewFilm} />
         </div>
         <div className="row">
           <div className="col">

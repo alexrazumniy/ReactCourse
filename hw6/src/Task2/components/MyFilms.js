@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import Film from "./Film";
 
-const MyFilms = ({films}) => {
+const MyFilms = (films) => {
   if (!films.length) {
-    return <div>Фильмов пока что нет :(</div>;
+    return <div>Пока что ничего не хочу смотреть :(</div>;
   }
 
   console.log(films);
@@ -11,7 +11,7 @@ const MyFilms = ({films}) => {
   return (
     <div>
       {films.map((film) => (
-        <Film key={film} film={film} />
+        <Film key={film.id} film={film} />
       ))}
     </div>
   );

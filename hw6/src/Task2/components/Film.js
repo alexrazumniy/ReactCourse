@@ -1,7 +1,7 @@
 const Film = ({ film }) => {
   return (
-    <div>
-      <h3>{film}</h3>
+    <div className="film-info">
+      <p className="film-title">{film}</p>
     </div>
   );
 };

@@ -1,11 +1,12 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useState } from "react";
-
 import { createFilm } from "../redux/actions";
+import { useDispatch } from "react-redux";
 
 const Form = () => {
-  const [films, setFilms] = useState([]);
+
+  const dispatch = useDispatch();
+  
   const { handleSubmit, handleChange, values, errors, resetForm } = useFormik({
     initialValues: {
       film: "",
@@ -15,9 +16,12 @@ const Form = () => {
       film: Yup.string().required("Поле не может быть пустым!"),
     }),
 
+
+
     onSubmit: ({ film }) => {
       const newFilm = { film, id: Date.now().toString() };
-      createFilm(newFilm);
+      dispatch(createFilm(newFilm));
+
       console.log(newFilm);
 
       resetForm();
@@ -34,11 +38,10 @@ const Form = () => {
         placeholder="Введите название фильма"
         value={values.film}
         onChange={handleChange}
-        createFilm={createFilm}
       />
       {errors.film ? <p className="errormsg">{errors.film}</p> : null}
 
-      <button className="submit-btn" type="submit">
+      <button className="button" type="submit">
         Добавить фильм
       </button>
     </form>

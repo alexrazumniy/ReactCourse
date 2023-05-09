@@ -34,16 +34,24 @@
   left: 5px
 }
 
-.submit-btn {
+.button {
   align-self: center;
-  padding: 2px 25px;
-  background-color: #6bc0cf;
-  border: 1px solid;
+  padding: 6px 25px;
+  border: none;
   border-radius: 5px;
+  background-color: rgb(52, 182, 110);
+  box-shadow: 2px 2px 2px;
+  cursor: pointer;
+}
+
+.button:hover {
+  box-shadow: none;
+  transform: translate(2px, 2px);
+  cursor: pointer;
 }
 
 .task_container {
-  width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -53,5 +61,22 @@
 
 .col {
   flex: 1;
-  max-width: 500px;
+  max-width: 600px;
+}
+
+.film-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.film-title {
+  color: rgb(14, 112, 22);
+  font-weight: 800;
+}
+
+.film-time {
+  color: rgb(24, 14, 112);
+  font-weight: 500;
+  font-size: 16px;
 }
