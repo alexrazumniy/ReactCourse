@@ -1,38 +1,82 @@
-.App {
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.themetitle {
+  margin: 0;
+  font-style: italic;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  margin-bottom: 25px;
+}
+
+.form-header {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.input {
+  margin-bottom: 25px;
+  padding: 5px;
+  border: 1px solid;
+  border-radius: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.errormsg {
+  position: absolute;
+  font-size: 14px;
+  color: red;
+  top: 75px;
+  left: 5px
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.button {
+  align-self: center;
+  padding: 6px 25px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(52, 182, 110);
+  box-shadow: 2px 2px 2px;
+  cursor: pointer;
+}
+
+.button:hover {
+  box-shadow: none;
+  transform: translate(2px, 2px);
+  cursor: pointer;
+}
+
+.task_container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.col {
+  flex: 1;
+  max-width: 600px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.film-info {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+
+.film-title {
+  color: rgb(14, 112, 22);
+  font-weight: 700;
+}
+
+.film-time {
+  color: rgb(24, 14, 112);
+  font-weight: 500;
+  font-size: 16px;
 }
