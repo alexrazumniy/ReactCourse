@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Film from "./Film";
 
-const MyFilms = (films) => {
+const MyFilms = ({films}) => {
   if (!films.length) {
     return <div>Пока что ничего не хочу смотреть :(</div>;
   }
