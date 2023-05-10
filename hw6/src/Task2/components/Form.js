@@ -4,8 +4,9 @@ import { createFilm } from "../redux/actions";
 import { useDispatch } from "react-redux";
 
 const Form = () => {
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
+  
   const { handleSubmit, handleChange, values, errors, resetForm } = useFormik({
     initialValues: {
       film: "",
@@ -20,6 +21,7 @@ const Form = () => {
       dispatch(createFilm(newFilm));
 
       console.log(newFilm);
+      console.log(values.film);
 
       resetForm();
     },

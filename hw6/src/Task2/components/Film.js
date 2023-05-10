@@ -5,5 +5,4 @@ const Film = ({ film }) => {
     </div>
   );
 };
-
 export default Film;
