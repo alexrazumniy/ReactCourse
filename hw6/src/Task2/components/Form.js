@@ -4,9 +4,8 @@ import { createFilm } from "../redux/actions";
 import { useDispatch } from "react-redux";
 
 const Form = () => {
-
   const dispatch = useDispatch();
-  
+
   const { handleSubmit, handleChange, values, errors, resetForm } = useFormik({
     initialValues: {
       film: "",
@@ -15,8 +14,6 @@ const Form = () => {
     validationSchema: Yup.object({
       film: Yup.string().required("Поле не может быть пустым!"),
     }),
-
-
 
     onSubmit: ({ film }) => {
       const newFilm = { film, id: Date.now().toString() };

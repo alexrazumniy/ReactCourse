@@ -6,8 +6,6 @@ const MyFilms = (films) => {
     return <div>Пока что ничего не хочу смотреть :(</div>;
   }
 
-  console.log(films);
-
   return (
     <div>
       {films.map((film) => (
