@@ -34,7 +34,7 @@ const ReactHookForm = () => {
         {...register("password", { required: true, minLength: 6 })}
       />
       {errors.password && <div>{errors.password?.message}</div>}
-      <button className="submit-btn" type="submit">
+      <button className="button" type="submit">
         Log in
       </button>
     </form>

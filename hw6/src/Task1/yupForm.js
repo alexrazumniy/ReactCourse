@@ -51,7 +51,7 @@ const YupForm = () => {
       {touched.password && errors.password ? (
         <div>{errors.password}</div>
       ) : null}
-      <button className="submit-btn" type="submit">
+      <button className="button" type="submit">
         Submit
       </button>
     </form>
