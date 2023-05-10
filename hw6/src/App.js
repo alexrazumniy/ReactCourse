@@ -5,7 +5,7 @@ import Task2 from "./Task2/Task_2";
 function App() {
   return (
     <div>
-      {/* <Task1 /> */}
+      <Task1 />
       <Task2 />
     </div>
   );
